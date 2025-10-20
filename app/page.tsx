@@ -30,8 +30,8 @@ export default function Page() {
             <CarLogo src="/hiyundai.png" alt="Hiyundai" width={20} height={20} text="Hiyundai" />
           </div>
         </div>
-
       <Form />
+      <p>Vous avez déja une reservation ?</p>
 
     </div>
   );
