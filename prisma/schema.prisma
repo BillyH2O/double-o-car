@@ -3,6 +3,8 @@
 
 generator client {
   provider = "prisma-client-js"
+  // Include the Linux binary used by Vercel lambdas to avoid "Query Engine not found"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
