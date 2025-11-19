@@ -1,0 +1,13 @@
+import React from 'react'
+
+type Props = {
+    label: string
+}
+
+export const Badge = ({ label }: Props) => {
+  return (
+    <label className={`text-md font-semibold text-center text-[#003CF0] border border-[#003CF0] rounded-full px-4 py-2`}>{label}</label>
+  )
+}
+
+

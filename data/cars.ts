@@ -1,0 +1,48 @@
+import { Car } from "@/types";
+
+export const cars: Car[] = [
+  {
+    id: 1,
+    brand: "Renault",
+    model: "Clio V",
+    year: 2024,
+    transmission: "Automatique",
+    fuel: "Essence",
+    pricePerDay: 35,
+    image: "/renault-1.png",
+    logo: "/renault.svg",
+  },
+  {
+    id: 2,
+    brand: "Renault",
+    model: "Clio V",
+    year: 2024,
+    transmission: "Manuelle",
+    fuel: "Diesel",
+    pricePerDay: 30,
+    image: "/renault-2.jpg",
+    logo: "/renault.svg",
+  },
+  {
+    id: 3,
+    brand: "Dacia",
+    model: "Logan",
+    year: 2024,
+    transmission: "Automatique",
+    fuel: "Essence",
+    pricePerDay: 35,
+    image: "/dacia-1.png",
+    logo: "/dacia.svg",
+  },
+  {
+    id: 4,
+    brand: "Dacia",
+    model: "Logan",
+    year: 2024,
+    transmission: "Manuelle",
+    fuel: "Diesel",
+    pricePerDay: 30,
+    image: "/dacia-2.jpg",
+    logo: "/dacia.svg",
+  },
+];
