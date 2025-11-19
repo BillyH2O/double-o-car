@@ -1,0 +1,178 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modèle User pour les clients et administrateurs
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  firstName     String?
+  lastName      String?
+  phone         String?
+  role          UserRole  @default(CLIENT)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  bookings      Booking[]
+  articles      Article[]
+  
+  @@map("users")
+}
+
+enum UserRole {
+  CLIENT
+  ADMIN
+}
+
+// Modèle Brand pour les marques de véhicules
+model Brand {
+  id          String    @id @default(cuid())
+  name        String    @unique // Nom de la marque (ex: Renault, Peugeot)
+  logo        String    // URL du logo de la marque
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relations
+  vehicles    Vehicle[]
+  
+  @@map("brands")
+}
+
+// Modèle Vehicle pour les véhicules
+model Vehicle {
+  id              String        @id @default(cuid())
+  slug            String        @unique // Slug pour l'URL (ex: renault-clio-v-2024)
+  brand           String        // Marque (ex: Renault, Peugeot) - conservé pour compatibilité
+  brandId         String?       // ID de la marque dans la table Brand
+  brandRelation   Brand?        @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  model           String        // Modèle (ex: Clio, 208)
+  year            Int           // Année
+  pricePerDay     Decimal       @db.Decimal(10, 2) // Prix par jour
+  pricePerWeek    Decimal?      @db.Decimal(10, 2) // Prix par semaine (optionnel)
+  pricePerMonth   Decimal?      @db.Decimal(10, 2) // Prix par mois (optionnel)
+  fuelType        FuelType      // Type de carburant
+  transmission    Transmission  // Transmission
+  seats           Int           // Nombre de places
+  doors           Int           // Nombre de portes
+  image           String        // URL de l'image principale
+  images          String[]      // Tableau d'URLs d'images supplémentaires
+  bio             String?       @db.Text // Description du véhicule
+  features        String[]      // Tableau de caractéristiques (ex: ["GPS", "Climatisation"])
+  isAvailable     Boolean       @default(true) // Disponibilité générale
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  // Relations
+  bookings        Booking[]
+  availability    VehicleAvailability[]
+  
+  @@index([brandId])
+  @@map("vehicles")
+}
+
+enum FuelType {
+  ESSENCE
+  DIESEL
+  ELECTRIC
+  HYBRID
+  HYBRID_PLUGIN
+}
+
+enum Transmission {
+  MANUAL
+  AUTOMATIC
+}
+
+// Modèle pour gérer les périodes de disponibilité spécifiques
+model VehicleAvailability {
+  id          String   @id @default(cuid())
+  vehicleId   String
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  startDate   DateTime
+  endDate     DateTime
+  isAvailable Boolean  @default(true) // false si le véhicule n'est pas disponible pendant cette période
+  reason      String?  // Raison de l'indisponibilité (ex: "Maintenance", "Réservé")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([vehicleId])
+  @@index([startDate, endDate])
+  @@map("vehicle_availability")
+}
+
+// Modèle Booking pour les réservations
+model Booking {
+  id              String        @id @default(cuid())
+  userId          String?       // Optionnel : permet les réservations sans compte
+  user            User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  vehicleId       String
+  vehicle         Vehicle       @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  
+  // Informations de contact (pour réservations sans compte)
+  guestEmail      String?       // Email du client (si pas de compte)
+  guestFirstName  String?       // Prénom du client (si pas de compte)
+  guestLastName   String?       // Nom du client (si pas de compte)
+  guestPhone      String?       // Téléphone du client (si pas de compte)
+  
+  startDate       DateTime      // Date de début de location
+  endDate         DateTime      // Date de fin de location
+  totalPrice      Decimal       @db.Decimal(10, 2) // Prix total calculé
+  status          BookingStatus @default(PENDING)
+  pickupLocation  String?       // Lieu de prise en charge
+  dropoffLocation String?       // Lieu de restitution
+  notes           String?       @db.Text // Notes additionnelles
+  
+  // Stripe integration
+  stripePaymentIntentId      String?     @unique // ID du PaymentIntent Stripe
+  stripeCheckoutSessionId    String?     @unique // ID de la session Stripe Checkout
+  
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  @@index([userId])
+  @@index([vehicleId])
+  @@index([guestEmail])
+  @@index([startDate, endDate])
+  @@index([stripeCheckoutSessionId])
+  @@map("bookings")
+}
+
+enum BookingStatus {
+  PENDING     // En attente de confirmation
+  CONFIRMED    // Confirmée
+  ACTIVE       // En cours
+  COMPLETED    // Terminée
+  CANCELLED    // Annulée
+}
+
+// Modèle Article pour les articles de blog
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String   @db.Text
+  excerpt     String?  @db.Text // Résumé de l'article
+  image       String?  // Image de couverture
+  published   Boolean  @default(false) // Publié ou brouillon
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  publishedAt DateTime? // Date de publication
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([authorId])
+  @@index([slug])
+  @@index([published, publishedAt])
+  @@map("articles")
+}
+
