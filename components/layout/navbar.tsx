@@ -58,7 +58,8 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
               src={navbarData.logo.src} 
               alt={navbarData.logo.alt} 
               width={navbarData.logo.width} 
-              height={navbarData.logo.height} 
+              height={navbarData.logo.height}
+              className="h-8 w-auto sm:h-10 md:h-12"
             />
           </a>
           <NavigationMenu className="hidden lg:block">
@@ -68,7 +69,7 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
                   {item.hasDropdown ? (
                     <>
                       <NavigationMenuTrigger className={`text-lg! bg-transparent hover:bg-transparent focus:bg-transparent data-active:bg-transparent data-[state=open]:bg-transparent transition-colors duration-300 ${
-                        isSolid ? "text-foreground" : "text-white"
+                        isSolid ? "text-foreground" : "text-white hover:text-white/50"
                       }`}>
                         {item.label}
                       </NavigationMenuTrigger>
@@ -82,7 +83,7 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
                     <NavigationMenuLink
                       href={item.href}
                       className={`${navigationMenuTriggerStyle()} text-lg! bg-transparent hover:bg-transparent focus:bg-transparent data-active:bg-transparent transition-colors duration-300 ${
-                        isSolid ? "text-foreground" : "text-white"
+                        isSolid ? "text-foreground" : "text-white hover:text-white/50"
                       }`}
                     >
                       {item.label}
@@ -109,10 +110,10 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
               <Button variant="outline" size="icon">
-                <MenuIcon className="h-4 w-4" />
+                <MenuIcon className="h-4 w-4 text-black" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="top" className="max-h-screen overflow-auto">
+            <SheetContent side="top" className="max-h-screen bg-black overflow-auto">
               <SheetHeader>
                 <SheetTitle>
                   <a

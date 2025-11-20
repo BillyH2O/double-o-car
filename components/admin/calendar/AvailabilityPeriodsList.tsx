@@ -17,14 +17,15 @@ export function AvailabilityPeriodsList({
 }: AvailabilityPeriodsListProps) {
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-white text-lg font-montserrat font-semibold">Périodes d&apos;indisponibilité</h3>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <h3 className="text-white text-base sm:text-lg font-montserrat font-semibold">Périodes d&apos;indisponibilité</h3>
         {showAddButton && (
           <button
             onClick={onAddClick}
-            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-montserrat text-sm"
+            className="bg-red-500 hover:bg-red-600 text-white px-3 sm:px-4 py-2 rounded-lg font-montserrat text-xs sm:text-sm whitespace-nowrap w-full sm:w-auto"
           >
-            + Ajouter une période
+            <span className="hidden sm:inline">+ Ajouter une période</span>
+            <span className="sm:hidden">+ Ajouter</span>
           </button>
         )}
       </div>
@@ -35,10 +36,10 @@ export function AvailabilityPeriodsList({
           .map((booking) => (
             <div
               key={`booking-${booking.id}`}
-              className="bg-blue-500/20 border border-blue-500/50 rounded-lg p-3 flex items-center justify-between"
+              className="bg-blue-500/20 border border-blue-500/50 rounded-lg p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2"
             >
-              <div className="text-white font-montserrat text-sm">
-                <div className="font-semibold">
+              <div className="text-white font-montserrat text-sm flex-1 min-w-0">
+                <div className="font-semibold wrap-break-word">
                   {new Date(booking.startDate).toLocaleDateString('fr-FR')} -{' '}
                   {new Date(booking.endDate).toLocaleDateString('fr-FR')}
                 </div>
@@ -46,7 +47,7 @@ export function AvailabilityPeriodsList({
                   Réservation {booking.status === 'CONFIRMED' ? 'confirmée' : 'active'} #{booking.id.substring(0, 8)}
                 </div>
               </div>
-              <div className="text-blue-300 text-xs font-montserrat px-2 py-1 rounded bg-blue-500/30">
+              <div className="text-blue-300 text-xs font-montserrat px-2 py-1 rounded bg-blue-500/30 shrink-0">
                 Réservation
               </div>
             </div>
@@ -57,20 +58,20 @@ export function AvailabilityPeriodsList({
           .map((period) => (
             <div
               key={period.id}
-              className="bg-red-500/20 border border-red-500/50 rounded-lg p-3 flex items-center justify-between"
+              className="bg-red-500/20 border border-red-500/50 rounded-lg p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2"
             >
-              <div className="text-white font-montserrat text-sm">
-                <div className="font-semibold">
+              <div className="text-white font-montserrat text-sm flex-1 min-w-0">
+                <div className="font-semibold wrap-break-word">
                   {new Date(period.startDate).toLocaleDateString('fr-FR')} -{' '}
                   {new Date(period.endDate).toLocaleDateString('fr-FR')}
                 </div>
                 {period.reason && (
-                  <div className="text-white/80 text-xs mt-1">{period.reason}</div>
+                  <div className="text-white/80 text-xs mt-1 wrap-break-word">{period.reason}</div>
                 )}
               </div>
               <button
                 onClick={() => onDelete(period.id)}
-                className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-montserrat"
+                className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-montserrat shrink-0 w-full sm:w-auto"
               >
                 Supprimer
               </button>

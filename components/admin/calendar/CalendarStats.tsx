@@ -21,15 +21,15 @@ export function CalendarStats({ vehicleId, refetchRef }: CalendarStatsProps) {
   }, [refetchStats, refetchRef])
 
   return (
-    <div className="bg-linear-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-white text-lg font-montserrat font-semibold">
+    <div className="bg-linear-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/10">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 mb-4">
+        <h3 className="text-white text-base sm:text-lg font-montserrat font-semibold">
           Statistiques
         </h3>
         <select
           value={statsPeriod}
           onChange={(e) => setStatsPeriod(e.target.value as StatsPeriod)}
-          className="bg-white/20 text-white border border-white/30 rounded-lg px-4 py-2 font-montserrat text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 [&>option]:bg-[#001141] [&>option]:text-white"
+          className="bg-white/20 text-white border border-white/30 rounded-lg px-3 sm:px-4 py-2 font-montserrat text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 [&>option]:bg-[#001141] [&>option]:text-white w-full sm:w-auto min-w-0"
         >
           <optgroup label="Passé" className="bg-[#001141] text-white">
             <option value="lastmonth" className="bg-[#001141] text-white">Mois précédent</option>

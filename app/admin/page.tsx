@@ -7,7 +7,7 @@ import { AdminDashboard } from "@/components/admin/dashboard/AdminDashboard"
 export default function AdminPage() {
   return (
     <div className="min-h-screen bg-linear-to-b from-[#001141] via-[#001a5c] to-black flex flex-col">
-      <AdminHeader title="Panneau d'administration" backUrl="/" />
+      <AdminHeader title="Pannel Admin" backUrl="/" />
 
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6">
         <div className="container mx-auto max-w-4xl">

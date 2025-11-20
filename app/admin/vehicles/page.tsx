@@ -27,14 +27,6 @@ export default function AdminVehiclesPage() {
       <AdminHeader
         title="Gestion des véhicules"
         backUrl="/admin"
-        rightAction={
-          <button
-            onClick={() => router.push('/admin/vehicles/new')}
-            className="bg-[#003CF0] hover:bg-[#0031c0] text-white px-4 py-2 rounded-lg font-montserrat font-semibold text-sm"
-          >
-            + Ajouter
-          </button>
-        }
       />
 
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6">
@@ -51,7 +43,19 @@ export default function AdminVehiclesPage() {
             </div>
           )}
 
-          {!loading && !error && <VehiclesTable vehicles={vehicles} onDelete={handleDelete} />}
+          {!loading && !error && (
+            <div className="space-y-6">
+              <div className="flex justify-end">
+                <button
+                  onClick={() => router.push('/admin/vehicles/new')}
+                  className="bg-[#003CF0] hover:bg-[#0031c0] text-white px-4 py-2 rounded-lg font-montserrat font-semibold text-sm w-full sm:w-auto"
+                >
+                  + Ajouter
+                </button>
+              </div>
+              <VehiclesTable vehicles={vehicles} onDelete={handleDelete} />
+            </div>
+          )}
         </div>
       </section>
 
