@@ -167,6 +167,10 @@
   animation: marquee-continuous 40s linear infinite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-montserrat), system-ui, -apple-system, sans-serif;
 }

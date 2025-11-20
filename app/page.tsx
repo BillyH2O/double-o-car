@@ -28,17 +28,21 @@ export default function Home() {
       <div className="dark mt-24 w-full mx-auto">
       
       <PourquoiNous/>
-      <TestimonialsSection title="Avis des clients" description="Nos clients nous ont dit" className="dark" testimonials={reviews.map((review) => ({
-        author: {
-          name: review.name,
-          handle: review.name,
-          avatar: "/avatar.jpg"
-        },
-        text: review.comment
-      }))} />
+      <section id="avis">
+        <TestimonialsSection title="Avis des clients" description="Nos clients nous ont dit" className="dark" testimonials={reviews.map((review) => ({
+          author: {
+            name: review.name,
+            handle: review.name,
+            avatar: "/avatar.jpg"
+          },
+          text: review.comment
+        }))} />
+      </section>
 
     <div className="dark mt-24 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
-        <FAQsThree />
+        <section id="faq">
+          <FAQsThree />
+        </section>
         {/* <Caroussel /> */}
         <Simplicity />
         <CTASection

@@ -68,9 +68,7 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
                 <NavigationMenuItem key={index}>
                   {item.hasDropdown ? (
                     <>
-                      <NavigationMenuTrigger className={`text-lg! bg-transparent hover:bg-transparent focus:bg-transparent data-active:bg-transparent data-[state=open]:bg-transparent transition-colors duration-300 ${
-                        isSolid ? "text-foreground" : "text-white hover:text-white/50"
-                      }`}>
+                      <NavigationMenuTrigger className="text-lg! bg-transparent hover:bg-transparent focus:bg-transparent data-active:bg-transparent data-[state=open]:bg-transparent transition-colors duration-300 text-white hover:text-white/50 data-active:text-white data-[state=open]:text-white">
                         {item.label}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="bg-popover border shadow-md">
@@ -82,9 +80,7 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
                   ) : (
                     <NavigationMenuLink
                       href={item.href}
-                      className={`${navigationMenuTriggerStyle()} text-lg! bg-transparent hover:bg-transparent focus:bg-transparent data-active:bg-transparent transition-colors duration-300 ${
-                        isSolid ? "text-foreground" : "text-white hover:text-white/50"
-                      }`}
+                      className={`${navigationMenuTriggerStyle()} text-lg! bg-transparent hover:bg-transparent focus:bg-transparent data-active:bg-transparent transition-colors duration-300 text-white hover:text-white/50 data-active:text-white`}
                     >
                       {item.label}
                     </NavigationMenuLink>
@@ -137,7 +133,7 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
                 
                 <div className="flex flex-col gap-6">
                   {navbarData.mobileMenuItems.map((item, index) => (
-                    <a key={index} href={item.href} className="font-medium">
+                    <a key={index} href={item.href} className="font-medium text-white hover:text-white/50 transition-colors">
                       {item.label}
                     </a>
                   ))}

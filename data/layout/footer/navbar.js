@@ -13,8 +13,13 @@ export const navbarData = {
       hasDropdown: false,
     },
     {
-      label: "Blog",
-      href: "/blog",
+      label: "Avis",
+      href: "#avis",
+      hasDropdown: false,
+    },
+    {
+      label: "FAQ",
+      href: "#faq",
       hasDropdown: false,
     },
     {
@@ -29,8 +34,12 @@ export const navbarData = {
       href: "/vehicules",
     },
     {
-      label: "Blog",
-      href: "/blog",
+      label: "Avis",
+      href: "#avis",
+    },
+    {
+      label: "FAQ",
+      href: "#faq",
     },
     {
       label: "À propos",
