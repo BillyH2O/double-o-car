@@ -39,7 +39,7 @@ export default function Home() {
 
     <div className="dark mt-24 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
         <FAQsThree />
-        <Caroussel />
+        {/* <Caroussel /> */}
         <Simplicity />
         <CTASection
       badge={{
