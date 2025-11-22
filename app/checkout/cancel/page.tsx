@@ -1,10 +1,10 @@
 "use client"
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import Footer from "@/components/layout/footer"
 
-export default function CheckoutCancelPage() {
+function CheckoutCancelContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session_id')
@@ -42,6 +42,18 @@ export default function CheckoutCancelPage() {
       </div>
       <Footer />
     </div>
+  )
+}
+
+export default function CheckoutCancelPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-linear-to-b from-[#001141] via-[#001a5c] to-black flex items-center justify-center p-6">
+        <div className="text-white font-montserrat">Chargement...</div>
+      </div>
+    }>
+      <CheckoutCancelContent />
+    </Suspense>
   )
 }
 
