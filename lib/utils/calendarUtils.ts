@@ -31,6 +31,8 @@ export function isDateInPeriod(date: Date, start: Date | string, end: Date | str
   return checkDate >= startDate && checkDate <= endDate
 }
 
+// DEPRECATED: Utiliser getMonthName depuis calendarTranslations.ts à la place
+// Conservé pour compatibilité avec les composants qui n'ont pas encore été migrés
 export const MONTH_NAMES = [
   'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
   'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'

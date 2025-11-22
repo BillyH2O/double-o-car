@@ -22,7 +22,7 @@ export function BrandSelector({ formData, brands, updateField, createBrand }: Br
   if (!showNewBrandInput) {
     return (
       <div>
-        <label className="block text-white font-montserrat font-semibold mb-2">Marque *</label>
+        <label className="block  text-white font-montserrat font-semibold mb-2">Marque *</label>
         <div className="space-y-2">
           <select
             required
@@ -35,7 +35,7 @@ export function BrandSelector({ formData, brands, updateField, createBrand }: Br
                 updateField('brand', e.target.value)
               }
             }}
-            className="w-full px-4 py-2 rounded-lg bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 rounded-lg bg-blue-500/50 hover:bg-blue-500/70 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Sélectionner une marque</option>
             {brands.map((brand, index) => (

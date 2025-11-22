@@ -70,7 +70,7 @@ export function BasicInfoFields({ formData, updateField }: BasicInfoFieldsProps)
           required
           value={formData.fuelType}
           onChange={(e) => updateField('fuelType', e.target.value)}
-          className="w-full px-4 py-2 rounded-lg bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 rounded-lg bg-blue-500/40 hover:bg-blue-500/70 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="ESSENCE">Essence</option>
           <option value="DIESEL">Diesel</option>
@@ -86,10 +86,10 @@ export function BasicInfoFields({ formData, updateField }: BasicInfoFieldsProps)
           required
           value={formData.transmission}
           onChange={(e) => updateField('transmission', e.target.value)}
-          className="w-full px-4 py-2 rounded-lg bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-4 py-2 rounded-lg bg-blue-500/5 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
-          <option value="MANUAL">Manuelle</option>
-          <option value="AUTOMATIC">Automatique</option>
+          <option className="text-white bg-blue-500/50 hover:bg-blue-500/70" value="MANUAL">Manuelle</option>
+          <option className="text-white bg-blue-500/50 hover:bg-blue-500/70" value="AUTOMATIC">Automatique</option>
         </select>
       </div>
 

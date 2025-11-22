@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import LocationModal from "@/components/ui/LocationModal";
 import DatePickerModal from "@/components/ui/DatePickerModal";
+import { useTranslations, useLocale } from "next-intl";
 
 interface SearchFormProps {
   onSearch?: () => void;
@@ -13,14 +14,16 @@ interface SearchFormProps {
 }
 
 function SearchFormContent({ onSearch, redirectTo = '/vehicules', className }: SearchFormProps) {
+  const t = useTranslations("booking");
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   
   // Initialiser depuis l'URL si disponible
   const urlStartDate = searchParams?.get('startDate') || '';
   const urlEndDate = searchParams?.get('endDate') || '';
-  const urlPickupLocation = searchParams?.get('pickupLocation') || 'Aéroport de Marrakech';
-  const urlReturnLocation = searchParams?.get('returnLocation') || 'Aéroport de Marrakech';
+  const urlPickupLocation = searchParams?.get('pickupLocation') || t("defaultLocation");
+  const urlReturnLocation = searchParams?.get('returnLocation') || t("defaultLocation");
   
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const [isDateModalOpen, setIsDateModalOpen] = useState(false);
@@ -38,8 +41,9 @@ function SearchFormContent({ onSearch, redirectTo = '/vehicules', className }: S
     if (searchParams) {
       const urlStart = searchParams.get('startDate') || '';
       const urlEnd = searchParams.get('endDate') || '';
-      const urlPickup = searchParams.get('pickupLocation') || 'Aéroport de Marrakech';
-      const urlReturn = searchParams.get('returnLocation') || 'Aéroport de Marrakech';
+      const defaultLoc = t("defaultLocation");
+      const urlPickup = searchParams.get('pickupLocation') || defaultLoc;
+      const urlReturn = searchParams.get('returnLocation') || defaultLoc;
       
       startTransition(() => {
       setStartDate(urlStart);
@@ -48,7 +52,7 @@ function SearchFormContent({ onSearch, redirectTo = '/vehicules', className }: S
         setReturnLocation(urlReturn);
       })
     }
-  }, [searchParams]);
+  }, [searchParams, t]);
 
   const handleSearch = () => {
     // Construire l'URL avec les paramètres de recherche
@@ -65,14 +69,14 @@ function SearchFormContent({ onSearch, redirectTo = '/vehicules', className }: S
 
   // Formater les dates pour l'affichage
   const formatDate = (dateString: string) => {
-    if (!dateString) return "Sélectionner";
+    if (!dateString) return t("select");
     const date = new Date(dateString);
-    return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+    return date.toLocaleDateString(locale, { day: 'numeric', month: 'short' });
   };
 
   const displayDates = startDate && endDate 
     ? `${formatDate(startDate)} - ${formatDate(endDate)}`
-    : "Sélectionner les dates";
+    : t("selectDates");
 
   return (
     <>
@@ -90,7 +94,7 @@ function SearchFormContent({ onSearch, redirectTo = '/vehicules', className }: S
                 </div>
                 <div className="flex-1 min-w-0">
                   <label className="block text-xs text-gray-400 mb-1 font-montserrat font-bold">
-                    Lieu de départ
+                    {t("pickupLocationLabel")}
                   </label>
                   <div className="text-black text-sm font-montserrat font-medium">
                     {pickupLocation}
@@ -110,7 +114,7 @@ function SearchFormContent({ onSearch, redirectTo = '/vehicules', className }: S
                 </div>
                 <div className="flex-1 min-w-0">
                   <label className="block text-xs text-gray-400 mb-1 font-montserrat font-bold">
-                    Dates
+                    {t("dates")}
                   </label>
                   <div className="text-black text-sm font-montserrat font-medium">
                     {displayDates}
@@ -123,9 +127,9 @@ function SearchFormContent({ onSearch, redirectTo = '/vehicules', className }: S
             <div className="w-full">
               <button
                 onClick={handleSearch}
-                className="w-full bg-[#003CF0] hover:bg-[#0034D0] text-white py-3 px-6 rounded-xl transition-colors font-montserrat font-semibold text-sm whitespace-nowrap h-10 flex items-center justify-center"
+                className="w-full bg-[#003CF0] hover:bg-[#0034D0] text-white py-3 px-6 rounded-xl transition-colors font-montserrat font-semibold text-sm whitespace-nowrap h-10 flex items-center justify-center hover:cursor-pointer"
               >
-                Rechercher
+                {t("searchButton")}
               </button>
             </div>
           </div>
@@ -162,12 +166,14 @@ function SearchFormContent({ onSearch, redirectTo = '/vehicules', className }: S
 }
 
 export default function SearchForm(props: SearchFormProps) {
+  const t = useTranslations("booking");
+  
   return (
     <Suspense fallback={
       <div className={`bg-white rounded-2xl shadow-lg overflow-hidden mx-auto w-full ${props.className || ''}`}>
         <div className="bg-white p-4 md:p-6">
           <div className="flex flex-col gap-4">
-            <div className="text-center text-gray-400 py-8">Chargement...</div>
+            <div className="text-center text-gray-400 py-8">{t("loading")}</div>
           </div>
         </div>
       </div>

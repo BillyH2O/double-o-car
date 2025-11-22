@@ -3,8 +3,11 @@
 import Image from "next/image"
 import Footer from "@/components/layout/footer"
 import { Navbar } from "@/components/layout/navbar"
+import { useTranslations } from "next-intl"
 
 export default function AboutPage() {
+  const t = useTranslations("aboutPage")
+  
   return (
     <div className="min-h-screen bg-linear-to-b from-[#001141] via-[#001a5c] to-black">
       <Navbar />
@@ -15,7 +18,7 @@ export default function AboutPage() {
           <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src="/image-femme-voiture.jpg"
-              alt="Notre équipe"
+              alt={t("heroAlt")}
               fill
               className="object-cover"
               priority
@@ -28,17 +31,17 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat text-white mb-6 text-center">
-            Notre Histoire
+            {t("section1.title")}
           </h2>
           <div className="space-y-4 text-lg sm:text-xl text-gray-300 font-montserrat leading-relaxed">
             <p>
-              Double-O Car est née d&apos;une passion pour l&apos;automobile et d&apos;un désir de rendre la location de véhicules accessible à tous. Fondée en 2020, notre entreprise s&apos;est rapidement imposée comme un acteur de référence dans le secteur de la location automobile.
+              {t("section1.paragraph1")}
             </p>
             <p>
-              Nous avons commencé avec une vision simple : offrir une expérience de location exceptionnelle, où chaque client se sent valorisé et où chaque véhicule est soigneusement sélectionné pour répondre aux besoins les plus exigeants.
+              {t("section1.paragraph2")}
             </p>
             <p>
-              Aujourd&apos;hui, nous sommes fiers de proposer une flotte diversifiée de véhicules modernes, allant des citadines économiques aux berlines de luxe, en passant par les SUV spacieux. Notre engagement envers l&apos;excellence et la satisfaction client reste au cœur de tout ce que nous faisons.
+              {t("section1.paragraph3")}
             </p>
           </div>
         </div>
@@ -48,21 +51,19 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14 bg-white/5">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat text-white mb-6 text-center">
-            Notre Mission
+            {t("section2.title")}
           </h2>
           <div className="space-y-4 text-lg sm:text-xl text-gray-300 font-montserrat leading-relaxed">
             <p>
-              Chez Double-O Car, notre mission est de révolutionner l&apos;expérience de location automobile en offrant un service personnalisé, transparent et accessible. Nous croyons que chaque voyage mérite de commencer par une expérience exceptionnelle.
+              {t("section2.paragraph1")}
             </p>
             <p>
-              Nous nous engageons à :
+              {t("section2.paragraph2")}
             </p>
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Fournir des véhicules de qualité supérieure, régulièrement entretenus et vérifiés</li>
-              <li>Offrir des tarifs transparents et compétitifs sans frais cachés</li>
-              <li>Proposer un service client réactif et disponible 7j/7</li>
-              <li>Respecter l&apos;environnement en favorisant des véhicules économes en carburant</li>
-              <li>Simplifier le processus de réservation pour une expérience fluide</li>
+              {t.raw("section2.items").map((item: string, index: number) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -72,7 +73,7 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat text-white mb-12 text-center">
-            Notre Équipe
+            {t("section3.title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
@@ -80,13 +81,13 @@ export default function AboutPage() {
                 <span className="text-white text-2xl font-bold font-montserrat">B</span>
               </div>
               <h3 className="text-xl font-bold font-montserrat text-white text-center mb-2">
-                Brahim
+                {t("section3.brahim.name")}
               </h3>
               <p className="text-gray-300 text-center font-montserrat mb-3">
-                Cofondateur
+                {t("section3.cofounder")}
               </p>
               <p className="text-sm text-gray-400 text-center font-montserrat">
-                Cofondateur de Double-O Car, Brahim développe ce business depuis 1 an avec passion et détermination pour offrir la meilleure expérience de location.
+                {t("section3.brahim.description")}
               </p>
             </div>
 
@@ -95,13 +96,13 @@ export default function AboutPage() {
                 <span className="text-white text-2xl font-bold font-montserrat">M</span>
               </div>
               <h3 className="text-xl font-bold font-montserrat text-white text-center mb-2">
-                Mohamed
+                {t("section3.mohamed.name")}
               </h3>
               <p className="text-gray-300 text-center font-montserrat mb-3">
-                Cofondateur
+                {t("section3.cofounder")}
               </p>
               <p className="text-sm text-gray-400 text-center font-montserrat">
-                Cofondateur de Double-O Car, Mohamed développe ce business depuis 1 an avec passion et détermination pour offrir la meilleure expérience de location.
+                {t("section3.mohamed.description")}
               </p>
             </div>
           </div>
@@ -112,42 +113,42 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14 bg-white/5">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat text-white mb-12 text-center">
-            Nos Valeurs
+            {t("section4.title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               <h3 className="text-xl font-bold font-montserrat text-white mb-3">
-                Excellence
+                {t("section4.excellence.title")}
               </h3>
               <p className="text-gray-300 font-montserrat">
-                Nous visons l&apos;excellence dans chaque aspect de notre service, de la sélection des véhicules à l&apos;accueil de nos clients.
+                {t("section4.excellence.text")}
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               <h3 className="text-xl font-bold font-montserrat text-white mb-3">
-                Transparence
+                {t("section4.transparency.title")}
               </h3>
               <p className="text-gray-300 font-montserrat">
-                Pas de frais cachés, pas de surprises. Nous croyons en une communication claire et honnête avec nos clients.
+                {t("section4.transparency.text")}
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               <h3 className="text-xl font-bold font-montserrat text-white mb-3">
-                Innovation
+                {t("section4.innovation.title")}
               </h3>
               <p className="text-gray-300 font-montserrat">
-                Nous adoptons les dernières technologies pour améliorer constamment l&apos;expérience de nos clients.
+                {t("section4.innovation.text")}
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               <h3 className="text-xl font-bold font-montserrat text-white mb-3">
-                Durabilité
+                {t("section4.sustainability.title")}
               </h3>
               <p className="text-gray-300 font-montserrat">
-                Nous nous engageons pour un avenir plus vert en proposant des véhicules économes et en favorisant des pratiques durables.
+                {t("section4.sustainability.text")}
               </p>
             </div>
           </div>

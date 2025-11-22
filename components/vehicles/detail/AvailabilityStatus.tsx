@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 interface AvailabilityStatusProps {
   checkingAvailability: boolean
   isAvailable: boolean
@@ -9,11 +11,13 @@ export function AvailabilityStatus({
   isAvailable,
   availabilityReason,
 }: AvailabilityStatusProps) {
+  const t = useTranslations("vehicle")
+  
   if (checkingAvailability) {
     return (
       <div className="bg-blue-500/20 border border-blue-500/50 rounded-xl p-4 text-center">
         <p className="text-blue-300 font-montserrat text-sm">
-          Vérification de la disponibilité...
+          {t("checkingAvailability")}
         </p>
       </div>
     )
@@ -28,7 +32,7 @@ export function AvailabilityStatus({
           </svg>
           <div className="flex-1">
             <p className="text-red-300 font-montserrat font-semibold mb-1 text-sm">
-              Véhicule non disponible
+              {t("vehicleUnavailable")}
             </p>
             {availabilityReason && (
               <p className="text-red-200 font-montserrat text-xs">
@@ -48,7 +52,7 @@ export function AvailabilityStatus({
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <p className="text-green-300 font-montserrat text-sm">
-          ✅ Disponible pour cette période
+          {t("availableForPeriod")}
         </p>
       </div>
     </div>

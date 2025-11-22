@@ -1,6 +1,7 @@
 "use client";
 
 import { Users, Car, Star, Clock } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface StatItem {
   icon: React.ReactNode;
@@ -9,26 +10,27 @@ interface StatItem {
 }
 
 export default function PourquoiNous() {
+  const t = useTranslations('whyUs');
   const stats: StatItem[] = [
     {
       icon: <Users className="w-8 h-8" />,
-      number: "500+",
-      label: "Clients accompagnés",
+      number: t("items.0.number"),
+      label: t("items.0.label"),
     },
     {
       icon: <Car className="w-8 h-8" />,
-      number: "150+",
-      label: "Voitures disponibles",
+      number: t("items.1.number"),
+      label: t("items.1.label"),
     },
     {
       icon: <Star className="w-8 h-8" />,
-      number: "4.8/5",
-      label: "Note moyenne",
+      number: t("items.2.number"),
+      label: t("items.2.label"),
     },
     {
       icon: <Clock className="w-8 h-8" />,
-      number: "24/7",
-      label: "Service disponible",
+      number: t("items.3.number"),
+      label: t("items.3.label"),
     },
   ];
 
@@ -37,7 +39,7 @@ export default function PourquoiNous() {
       <div className="container px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14 mx-auto max-w-7xl">
         <div className="flex flex-col items-center mb-8 md:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold text-white mb-4">
-            Pourquoi nous choisir
+            {t("title")}
           </h2>
         </div>
         

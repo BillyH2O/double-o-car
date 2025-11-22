@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface DatePickerModalProps {
   isOpen: boolean;
@@ -29,6 +30,8 @@ export default function DatePickerModal({
   onEndTimeChange,
   onConfirm,
 }: DatePickerModalProps) {
+  const t = useTranslations("booking");
+  
   if (!isOpen) return null;
 
   // Obtenir la date minimale (aujourd'hui)
@@ -47,13 +50,13 @@ export default function DatePickerModal({
           </svg>
         </button>
 
-        <h2 className="text-xl font-montserrat font-bold text-black mb-6">Sélectionner les dates</h2>
+        <h2 className="text-xl font-montserrat font-bold text-black mb-6">{t("selectDates")}</h2>
 
         <div className="space-y-6">
           {/* Start Date */}
           <div>
             <label className="block text-sm text-gray-600 mb-2 font-montserrat font-semibold">
-              Date de début
+              {t("startDate")}
             </label>
             <div className="flex items-center gap-3 border border-gray-200 rounded-lg p-3 focus-within:border-[#003CF0] transition-colors">
               <Image src="/calendar.png" alt="Calendar" width={20} height={20} />
@@ -73,7 +76,7 @@ export default function DatePickerModal({
               />
             </div>
             <div className="mt-2">
-              <label className="block text-xs text-gray-500 mb-1 font-montserrat">Heure</label>
+              <label className="block text-xs text-gray-500 mb-1 font-montserrat">{t("time")}</label>
               <input
                 type="time"
                 value={startTime}
@@ -86,7 +89,7 @@ export default function DatePickerModal({
           {/* End Date */}
           <div>
             <label className="block text-sm text-gray-600 mb-2 font-montserrat font-semibold">
-              Date de fin
+              {t("endDate")}
             </label>
             <div className="flex items-center gap-3 border border-gray-200 rounded-lg p-3 focus-within:border-[#003CF0] transition-colors">
               <Image src="/calendar.png" alt="Calendar" width={20} height={20} />
@@ -107,7 +110,7 @@ export default function DatePickerModal({
               />
             </div>
             <div className="mt-2">
-              <label className="block text-xs text-gray-500 mb-1 font-montserrat">Heure</label>
+              <label className="block text-xs text-gray-500 mb-1 font-montserrat">{t("time")}</label>
               <input
                 type="time"
                 value={endTime}
@@ -126,7 +129,7 @@ export default function DatePickerModal({
           }}
           className="w-full bg-[#003CF0] hover:bg-[#0034D0] text-white py-3 rounded-lg transition-colors font-montserrat font-semibold mt-6"
         >
-          Confirmer
+          {t("confirm")}
         </button>
       </div>
     </div>

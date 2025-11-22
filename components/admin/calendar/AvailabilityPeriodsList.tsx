@@ -58,7 +58,11 @@ export function AvailabilityPeriodsList({
           .map((period) => (
             <div
               key={period.id}
-              className="bg-red-500/20 border border-red-500/50 rounded-lg p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2"
+              className={`${
+                period.isFormalBooking 
+                  ? 'bg-blue-500/20 border-blue-500/50' 
+                  : 'bg-red-500/20 border-red-500/50'
+              } border rounded-lg p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2`}
             >
               <div className="text-white font-montserrat text-sm flex-1 min-w-0">
                 <div className="font-semibold wrap-break-word">
@@ -69,12 +73,27 @@ export function AvailabilityPeriodsList({
                   <div className="text-white/80 text-xs mt-1 wrap-break-word">{period.reason}</div>
                 )}
               </div>
-              <button
-                onClick={() => onDelete(period.id)}
-                className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-xs font-montserrat shrink-0 w-full sm:w-auto"
-              >
-                Supprimer
-              </button>
+              <div className="flex items-center gap-2">
+                <div
+                  className={`${
+                    period.isFormalBooking 
+                      ? 'bg-blue-500/30 text-blue-300' 
+                      : 'bg-red-500/30 text-red-300'
+                  } text-xs font-montserrat px-2 py-1 rounded shrink-0`}
+                >
+                  {period.isFormalBooking ? 'Réservation présentielle' : 'Véhicule inactif'}
+                </div>
+                <button
+                  onClick={() => onDelete(period.id)}
+                  className={`${
+                    period.isFormalBooking 
+                      ? 'bg-blue-600 hover:bg-blue-700' 
+                      : 'bg-red-600 hover:bg-red-700'
+                  } text-white px-3 py-1 rounded text-xs font-montserrat shrink-0 w-full sm:w-auto`}
+                >
+                  Supprimer
+                </button>
+              </div>
             </div>
           ))}
       </div>

@@ -1,0 +1,425 @@
+{
+  "common": {
+    "reserve": "Reserve",
+    "search": "Search",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "errorCode": "404",
+    "title": "Page not found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "backToHome": "Back to home",
+    "viewVehicles": "View our vehicles"
+  },
+  "nav": {
+    "home": "Home",
+    "vehicles": "Vehicles",
+    "about": "About",
+    "contact": "Contact",
+    "reviews": "Reviews",
+    "faq": "FAQ"
+  },
+  "navbar": {
+    "vehiclesLabel": "Our vehicles",
+    "reviewsLabel": "Reviews",
+    "faqLabel": "FAQ",
+    "aboutLabel": "About",
+    "reserveButton": "Reserve",
+    "contactButton": "Contact",
+    "logoAlt": "Double-O Car"
+  },
+  "hero": {
+    "title": "Hit the road, We'll take care of the rest.",
+    "description": "Designed to make your experience more enjoyable"
+  },
+  "whyUs": {
+    "title": "Why choose us",
+    "description": "We are a quality car rental company, we have a dedicated team to offer you an exceptional rental experience.",
+    "items": [
+      {
+        "number": "500+",
+        "label": "Clients"
+      },
+      {
+        "number": "150+",
+        "label": "Vehicles available"
+      },
+      {
+        "number": "4.8/5",
+        "label": "Average rating"
+      },
+      {
+        "number": "24/7",
+        "label": "Service available"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Customer Reviews",
+    "description": "What our customers said"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "description": "You can't find what you're looking for? Contact our",
+    "link": "service client",
+    "items": [
+      {
+        "question": "In which city can you deliver the car to me?",
+        "answer": "We are specialized in delivering cars to Marrakech."
+      },
+      {
+        "question": "What documents are needed to rent a car?",
+        "answer": "You must be an adult, have a valid identity card and a valid driver's license."
+      },
+      {
+        "question": "What types of vehicles do you offer?",
+        "answer": "We offer a range of city cars and family cars."
+      },
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept payments by bank card, and by cash."
+      },
+      {
+        "question": "Are the cars insured?",
+        "answer": "Yes, all cars are insured by our partner insurance."
+      }
+    ]
+  },
+  "whoWeAre": {
+    "title": "Who we are",
+    "description1": "Rent your car with complete peace of mind thanks to a simple, stress-free service designed to save you time and make your experience more enjoyable.",
+    "description2": "At Double-O Car, we pride ourselves on offering an exceptional rental experience. Our dedicated team is here to listen to all your needs and accompany you throughout your rental. Whether you need a vehicle for a weekend or for a long period, we have the solution adapted to your expectations."
+  },
+  "cta": {
+    "badge": "CTA",
+    "title": "What are you waiting for?",
+    "description": "Book your vehicle online and enjoy our best offers",
+    "button": "Reserve"
+  },
+  "booking": {
+    "pickupLocation": "Pickup location",
+    "returnLocation": "Return location",
+    "pickupLocationLabel": "Departure location",
+    "returnLocationLabel": "Return location",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "startTime": "Start time",
+    "endTime": "End time",
+    "dates": "Dates",
+    "from": "From",
+    "to": "To",
+    "time": "Time",
+    "search": "Search for a vehicle",
+    "searchButton": "Search",
+    "searchCar": "Search for a car",
+    "select": "Select",
+    "selectDates": "Select dates",
+    "selectLocations": "Select locations",
+    "selectLocation": "Select a location",
+    "selectDate": "Select a date",
+    "defaultLocation": "Marrakech Airport",
+    "pickupLocationPlaceholder": "Pickup location",
+    "returnLocationPlaceholder": "Return location",
+    "enterPickupLocation": "Enter pickup location",
+    "enterReturnLocation": "Enter return location",
+    "useSameLocation": "Use same location",
+    "sameReturnLocation": "Same return location",
+    "differentReturnLocation": "Different return location",
+    "confirm": "Confirm",
+    "loading": "Loading...",
+    "selectDatesMessage": "Please select rental dates"
+  },
+  "vehicle": {
+    "description": "Description",
+    "features": "Features",
+    "equipment": "Equipment",
+    "characteristics": "Characteristics",
+    "pricing": "Pricing",
+    "pricePerDay": "Price per day",
+    "pricePerWeek": "Price per week",
+    "pricePerMonth": "Price per month",
+    "perWeek": "Per week",
+    "perMonth": "Per month",
+    "availability": "Availability",
+    "availabilities": "Availabilities",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "bookNow": "Book now",
+    "totalPrice": "Total price",
+    "days": "day(s)",
+    "year": "Year",
+    "transmission": "Transmission",
+    "fuel": "Fuel",
+    "seats": "Seats",
+    "doors": "Doors",
+    "selectDatesMessage": "⚠️ Select dates to book",
+    "checkingAvailability": "Checking availability...",
+    "vehicleUnavailable": "Vehicle unavailable",
+    "availableForPeriod": "✅ Available for this period",
+    "backToList": "Back to list",
+    "vehicleNotFound": "Vehicle not found",
+    "noVehiclesFound": "No vehicles available with these filters.",
+    "perDay": "/Day",
+    "searchCriteria": "Search criteria",
+    "departure": "Departure",
+    "return": "Return",
+    "period": "Period"
+  },
+  "vehicleFilters": {
+    "title": "Filters",
+    "brand": "Brand",
+    "fuelType": "Fuel type",
+    "transmission": "Transmission",
+    "all": "All",
+    "automatic": "Automatic",
+    "manual": "Manual"
+  },
+  "about": {
+    "title": "Who we are",
+    "description1": "Rent your car with complete peace of mind thanks to a simple, stress-free service designed to save you time and make your experience more enjoyable.",
+    "description2": "At Double-O Car, we pride ourselves on offering an exceptional rental experience. Our dedicated team is here to listen to all your needs and accompany you throughout your rental. Whether you need a vehicle for a weekend or for a long period, we have the solution adapted to your expectations."
+  },
+  "contact": {
+    "title": "CONTACT FORM",
+    "subtitle": "Contact us",
+    "description": "Feel free to contact us for any questions or information requests",
+    "lastName": "Last name",
+    "firstName": "First name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send",
+    "success": "Your message has been sent successfully. Thank you, we will respond quickly.",
+    "error": "An error occurred while sending the message."
+  },
+  "checkout": {
+    "redirecting": "Redirecting...",
+    "checkoutButton": "Book this vehicle"
+  },
+  "privacy": {
+    "label": "Information",
+    "title": "PRIVACY POLICY",
+    "lastUpdate": "Last updated: January 2025",
+    "section1": {
+      "title": "1. Data collection",
+      "intro": "Double-O Car collects and processes personal data that you provide to us when using our services, including:",
+      "items": [
+        "Name, first name and contact details (email, phone, address)",
+        "Payment information (processed securely)",
+        "Vehicle reservation information",
+        "Navigation data and cookies"
+      ]
+    },
+    "section2": {
+      "title": "2. Use of data",
+      "intro": "Your personal data is used to:",
+      "items": [
+        "Process your vehicle reservations",
+        "Manage your rentals and contracts",
+        "Contact you regarding your reservations",
+        "Improve our services and your user experience",
+        "Comply with our legal and regulatory obligations"
+      ]
+    },
+    "section3": {
+      "title": "3. Data sharing",
+      "intro": "We never sell your personal data. We may share your information with:",
+      "items": [
+        "Our service providers (hosting, payment, email sending)",
+        "Our vehicle rental partners",
+        "Competent authorities if required by law"
+      ]
+    },
+    "section4": {
+      "title": "4. Data security",
+      "text": "We implement appropriate technical and organizational measures to protect your personal data against any unauthorized access, loss, destruction or alteration."
+    },
+    "section5": {
+      "title": "5. Your rights",
+      "intro": "In accordance with GDPR, you have the following rights:",
+      "items": [
+        "Right of access to your personal data",
+        "Right to rectification of inaccurate data",
+        "Right to erasure of your data",
+        "Right to restriction of processing",
+        "Right to data portability",
+        "Right to object to processing"
+      ],
+      "contact": "To exercise these rights, contact us at:"
+    },
+    "section6": {
+      "title": "6. Cookies",
+      "text": "Our website uses cookies to improve your browsing experience. You can manage your cookie preferences in your browser settings."
+    },
+    "section7": {
+      "title": "7. Modifications",
+      "text": "We reserve the right to modify this privacy policy at any time. Changes will be published on this page with an update to the last modification date."
+    },
+    "section8": {
+      "title": "8. Contact",
+      "text": "For any questions regarding this privacy policy, you can contact us at:",
+      "email": "Email:"
+    }
+  },
+  "legal": {
+    "label": "Information",
+    "title": "LEGAL NOTICE",
+    "subtitle": "Legal information regarding Double-O Car",
+    "section1": {
+      "title": "1. Site publisher",
+      "intro": "The double-o-car.fr website is published by:",
+      "companyName": "Company name:",
+      "email": "Email:",
+      "website": "Website:"
+    },
+    "section2": {
+      "title": "2. Publication director",
+      "text": "The publication director is the legal representative of Double-O Car."
+    },
+    "section3": {
+      "title": "3. Hosting",
+      "text": "The site is hosted by a web hosting provider. For any information regarding hosting, please contact us."
+    },
+    "section4": {
+      "title": "4. Intellectual property",
+      "text": "All content on this site (texts, images, videos, logos, etc.) is the exclusive property of Double-O Car, unless otherwise stated. Any reproduction, representation, modification, publication or adaptation of all or part of the site's elements, regardless of the means or process used, is prohibited without prior written authorization from Double-O Car."
+    },
+    "section5": {
+      "title": "5. Personal data protection",
+      "text": "Personal data collected on this site is processed in accordance with our",
+      "privacyLink": "Privacy Policy",
+      "text2": "and the General Data Protection Regulation (GDPR)."
+    },
+    "section6": {
+      "title": "6. Cookies",
+      "text": "This site uses cookies to improve the user experience. By continuing to browse this site, you accept the use of cookies in accordance with our privacy policy."
+    },
+    "section7": {
+      "title": "7. Limitation of liability",
+      "text1": "Double-O Car strives to ensure the accuracy and updating of information published on this site. However, Double-O Car cannot guarantee the accuracy, precision or completeness of information made available on this site.",
+      "text2": "Double-O Car cannot be held responsible for direct or indirect damage caused to the user's equipment when accessing the site, resulting either from the use of equipment that does not meet specifications, or from the appearance of a bug or incompatibility."
+    },
+    "section8": {
+      "title": "8. External links",
+      "text": "The site may contain links to other websites. Double-O Car is not responsible for the content of these external sites and disclaims any responsibility regarding their content or accessibility."
+    },
+    "section9": {
+      "title": "9. Applicable law",
+      "text": "These legal notices are governed by French law. In case of dispute, French courts will have sole jurisdiction."
+    },
+    "section10": {
+      "title": "10. Contact",
+      "text": "For any questions regarding these legal notices, you can contact us at:",
+      "email": "Email:"
+    }
+  },
+  "aboutPage": {
+    "heroAlt": "Our team",
+    "section1": {
+      "title": "Our Story",
+      "paragraph1": "Double-O Car was born from a passion for automobiles and a desire to make vehicle rental accessible to everyone. Founded in 2020, our company quickly established itself as a reference player in the car rental sector.",
+      "paragraph2": "We started with a simple vision: to offer an exceptional rental experience, where every customer feels valued and where every vehicle is carefully selected to meet the most demanding needs.",
+      "paragraph3": "Today, we are proud to offer a diverse fleet of modern vehicles, ranging from economical city cars to luxury sedans, including spacious SUVs. Our commitment to excellence and customer satisfaction remains at the heart of everything we do."
+    },
+    "section2": {
+      "title": "Our Mission",
+      "paragraph1": "At Double-O Car, our mission is to revolutionize the car rental experience by offering personalized, transparent and accessible service. We believe that every journey deserves to start with an exceptional experience.",
+      "paragraph2": "We are committed to:",
+      "items": [
+        "Providing superior quality vehicles, regularly maintained and checked",
+        "Offering transparent and competitive rates with no hidden fees",
+        "Providing responsive customer service available 7 days a week",
+        "Respecting the environment by promoting fuel-efficient vehicles",
+        "Simplifying the booking process for a smooth experience"
+      ]
+    },
+    "section3": {
+      "title": "Our Team",
+      "cofounder": "Cofounder",
+      "brahim": {
+        "name": "Brahim",
+        "description": "Cofounder of Double-O Car, Brahim has been developing this business for 1 year with passion and determination to offer the best rental experience."
+      },
+      "mohamed": {
+        "name": "Mohamed",
+        "description": "Cofounder of Double-O Car, Mohamed has been developing this business for 1 year with passion and determination to offer the best rental experience."
+      }
+    },
+    "section4": {
+      "title": "Our Values",
+      "excellence": {
+        "title": "Excellence",
+        "text": "We strive for excellence in every aspect of our service, from vehicle selection to customer welcome."
+      },
+      "transparency": {
+        "title": "Transparency",
+        "text": "No hidden fees, no surprises. We believe in clear and honest communication with our customers."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "text": "We adopt the latest technologies to constantly improve our customers' experience."
+      },
+      "sustainability": {
+        "title": "Sustainability",
+        "text": "We are committed to a greener future by offering fuel-efficient vehicles and promoting sustainable practices."
+      }
+    }
+  },
+  "footer": {
+    "description": "Double-O Car - Quality car rental",
+    "links": "Quick links",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "about": "About",
+    "contact": "Contact us",
+    "vehicles": "Vehicles",
+    "rentalConditions": "Rental conditions",
+    "developedBy": "Developed by",
+    "studio": "BlueStudio"
+  },
+  "calendar": {
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "days": {
+      "sunday": "Sun",
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat"
+    },
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month"
+  },
+  "calendarLegend": {
+    "reserved": "Reserved",
+    "available": "Available",
+    "reservedUnavailable": "Reserved / Unavailable"
+  },
+  "notFound": {
+    "errorCode": "404",
+    "title": "Page not found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "backToHome": "Back to home",
+    "viewVehicles": "View our vehicles"
+  }
+}
+

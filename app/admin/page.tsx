@@ -15,7 +15,9 @@ export default function AdminPage() {
         </div>
       </section>
 
-      <div className="mt-auto"><Footer /></div>
+      <div className="mt-auto">
+        <Footer />
+      </div>
     </div>
   )
 }

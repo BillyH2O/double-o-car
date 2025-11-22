@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { transformVehicleWithTranslation } from '@/lib/utils/vehicleTranslations'
+import { defaultLocale } from '@/i18n'
 // Note: We avoid importing Prisma types here to keep the route lightweight
 
 export async function GET(request: Request) {
@@ -11,6 +13,9 @@ export async function GET(request: Request) {
     const transmission = searchParams.get('transmission')
     const startDate = searchParams.get('startDate')
     const endDate = searchParams.get('endDate')
+    
+    // Récupérer la locale depuis les headers ou les query params, ou utiliser la locale par défaut
+    const locale = request.headers.get('x-locale') || searchParams.get('locale') || defaultLocale
 
     // Construire les filtres (nous mapperons les valeurs correctement)
     // Types d'enums Prisma pour fuelType et transmission
@@ -75,6 +80,7 @@ export async function GET(request: Request) {
                   isAvailable: false,
                 },
               },
+              translations: true, // Inclure toutes les traductions
             },
             orderBy: {
               createdAt: 'desc',
@@ -134,9 +140,17 @@ export async function GET(request: Request) {
       })
     }
 
-    // Retirer les relations pour la réponse (on ne veut que les données du véhicule)
+    // Transformer les véhicules avec les traductions pour la locale demandée
     const vehiclesResponse = vehicles.map((vehicle: { [key: string]: unknown }) => {
-      const { ...vehicleData } = vehicle
+      // Transformer avec la traduction
+      const vehicleWithTranslation = transformVehicleWithTranslation(
+        vehicle as Parameters<typeof transformVehicleWithTranslation>[0],
+        locale
+      )
+      
+      // Retirer les relations non nécessaires pour la réponse
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { translations: _translations, bookings: _bookings, availability: _availability, ...vehicleData } = vehicleWithTranslation as { [key: string]: unknown }
       return vehicleData
     })
 

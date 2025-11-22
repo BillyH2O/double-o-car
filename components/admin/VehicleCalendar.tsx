@@ -38,7 +38,7 @@ export default function VehicleCalendar({
     deletePeriod,
   } = useVehicleAvailabilityPeriods(vehicle.id)
 
-  const handleAddPeriod = async (data: { startDate: string; endDate: string; reason?: string }) => {
+  const handleAddPeriod = async (data: { startDate: string; endDate: string; reason?: string; isFormalBooking?: boolean }) => {
     await createPeriod(data)
     // Rafraîchir les stats après ajout
     if (statsRefetchRef.current) {

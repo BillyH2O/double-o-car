@@ -1,6 +1,10 @@
+"use client";
+
 import { getDaysInMonth } from "@/lib/utils/calendarUtils"
 import { getDayStatus } from "@/lib/utils/calendarStatusUtils"
 import { Booking, Availability } from "@/lib/services/vehicleAvailabilityService"
+import { useTranslations } from "next-intl"
+import { getDayNames } from "@/lib/utils/calendarTranslations"
 
 interface CalendarGridProps {
   currentMonth: Date
@@ -11,6 +15,8 @@ interface CalendarGridProps {
 
 export function CalendarGrid({ currentMonth, bookings, availability, compact }: CalendarGridProps) {
   const days = getDaysInMonth(currentMonth)
+  const t = useTranslations("calendar")
+  const dayNames = getDayNames(t)
 
   return (
     <div className={compact 
@@ -21,7 +27,7 @@ export function CalendarGrid({ currentMonth, bookings, availability, compact }: 
         ? "grid grid-cols-7 gap-1 mb-1"
         : "grid grid-cols-7 gap-2 mb-2"
       }>
-        {['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'].map((day) => (
+        {dayNames.map((day) => (
           <div key={day} className={compact
             ? "text-center text-white/80 font-montserrat font-semibold text-xs py-1"
             : "text-center text-white/80 font-montserrat font-semibold text-sm py-2"

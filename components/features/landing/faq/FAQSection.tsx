@@ -3,6 +3,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { DynamicIcon, type IconName } from 'lucide-react/dynamic'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 type FAQItem = {
     id: string
@@ -12,53 +13,49 @@ type FAQItem = {
 }
 
 export default function FAQsThree() {
+    const t = useTranslations('faq')
     const faqItems: FAQItem[] = [
         {
             id: 'item-1',
             icon: 'clock',
-            question: 'Dans quelle ville pouvez-vous me livrer la voiture ?',
-            answer: 'Nous sommes spécialisés dans la livraison de voitures partout à Marrakech.',
+            question: t('items.0.question'),
+            answer: t('items.0.answer'),
         },
         {
             id: 'item-2',
             icon: 'credit-card',
-            question: 'Quels documents sont nécessaires pour louer une voiture ?',
-            answer: 'Pour louer une voiture, vous devez être majeur, posséder une carte d\'identité valide et un permis de conduire valide.',
+            question: t('items.1.question'),
+            answer: t('items.1.answer'),
         },
         {
             id: 'item-3',
             icon: 'truck',
-            question: 'Quels types de véhicules proposez-vous ?',
-            answer: 'Nous proposons une gamme de véhicules citadines et familiales.',
+            question: t('items.2.question'),
+            answer: t('items.2.answer'),
         },
         {
             id: 'item-4',
             icon: 'globe',
-            question: 'Quels moyens de paiement acceptez-vous ?',
-            answer: 'Nous acceptons les paiements par carte bancaire, et par especes.',
+            question: t('items.3.question'),
+            answer: t('items.3.answer'),
         },
         {
             id: 'item-5',
             icon: 'package',
-            question: 'Les voitures sont-elles assurées ?',
-            answer: 'Oui, toutes les voitures sont assurées par notre assurance partenaire.',
+            question: t('items.4.question'),
+            answer: t('items.4.answer'),
         },
     ]
 
     return (
-        <section className="py-20">
+        <section className="py-12 sm:py-24 md:py-32">
             <div className="mx-auto max-w-5xl px-4 md:px-6">
                 <div className="flex flex-col gap-10 md:flex-row md:gap-16">
                     <div className="md:w-1/3">
                         <div className="sticky top-20">
-                            <h2 className="mt-4 text-3xl font-bold dark:text-white">Questions fréquentes</h2>
+                            <h2 className="mt-4 text-3xl font-bold dark:text-white">{t('title')}</h2>
                             <p className="text-muted-foreground dark:text-white mt-4">
-                               Vous ne trouvez pas ce que vous cherchez ? Contactez notre{' '}
-                                <Link
-                                    href="/contact"
-                                    className="text-[#003CF0] font-medium hover:underline">
-                                    service client
-                                </Link>
+                                {t('description')} <Link href="/contact" className="text-[#003CF0] font-medium hover:underline">{t('link')}</Link>
                             </p>
                         </div>
                     </div>

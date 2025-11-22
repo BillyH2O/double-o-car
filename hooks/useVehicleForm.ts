@@ -18,6 +18,10 @@ const initialFormData: VehicleFormData = {
   bio: '',
   features: [],
   isAvailable: true,
+  translations: [
+    { locale: 'en', bio: '', features: [] },
+    { locale: 'nl', bio: '', features: [] },
+  ],
 }
 
 export function useVehicleForm(initialVehicle?: Vehicle) {
@@ -79,6 +83,43 @@ export function useVehicleForm(initialVehicle?: Vehicle) {
     }))
   }, [])
 
+  const updateTranslation = useCallback((locale: 'en' | 'nl', field: 'bio' | 'features', value: string | string[]) => {
+    setFormData(prev => ({
+      ...prev,
+      translations: prev.translations.map(t =>
+        t.locale === locale ? { ...t, [field]: value } : t
+      ),
+    }))
+  }, [])
+
+  const addTranslationFeature = useCallback((locale: 'en' | 'nl', feature: string) => {
+    const trimmedFeature = feature.trim()
+    if (trimmedFeature) {
+      setFormData(prev => ({
+        ...prev,
+        translations: prev.translations.map(t => {
+          if (t.locale === locale && !t.features.includes(trimmedFeature)) {
+            return { ...t, features: [...t.features, trimmedFeature] }
+          }
+          return t
+        }),
+      }))
+      return true
+    }
+    return false
+  }, [])
+
+  const removeTranslationFeature = useCallback((locale: 'en' | 'nl', index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      translations: prev.translations.map(t =>
+        t.locale === locale
+          ? { ...t, features: t.features.filter((_, i) => i !== index) }
+          : t
+      ),
+    }))
+  }, [])
+
   const resetForm = useCallback(() => {
     setFormData(initialFormData)
   }, [])
@@ -95,6 +136,9 @@ export function useVehicleForm(initialVehicle?: Vehicle) {
     removeFeature,
     addImage,
     removeImage,
+    updateTranslation,
+    addTranslationFeature,
+    removeTranslationFeature,
     resetForm,
     getPayload,
   }

@@ -6,6 +6,9 @@ import { generateSlug } from '@/lib/utils/slug'
 export async function GET() {
   try {
     const vehicles = await prisma.vehicle.findMany({
+      include: {
+        translations: true,
+      },
       orderBy: {
         createdAt: 'desc',
       },
@@ -41,6 +44,7 @@ export async function POST(req: NextRequest) {
       bio,
       features,
       isAvailable,
+      translations,
     } = body
 
     // Validation des champs requis
@@ -98,7 +102,31 @@ export async function POST(req: NextRequest) {
         },
       })
 
-      return NextResponse.json(vehicle, { status: 201 })
+      // Créer les traductions si fournies
+      if (translations && Array.isArray(translations)) {
+        for (const translation of translations) {
+          if (translation.locale && (translation.bio || translation.features)) {
+            await prisma.vehicleTranslation.create({
+              data: {
+                vehicleId: vehicle.id,
+                locale: translation.locale,
+                bio: translation.bio || null,
+                features: translation.features || [],
+              },
+            })
+          }
+        }
+      }
+
+      // Récupérer le véhicule avec ses traductions
+      const vehicleWithTranslations = await prisma.vehicle.findUnique({
+        where: { id: vehicle.id },
+        include: {
+          translations: true,
+        },
+      })
+
+      return NextResponse.json(vehicleWithTranslations, { status: 201 })
     }
 
     const vehicle = await prisma.vehicle.create({
@@ -123,7 +151,31 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    return NextResponse.json(vehicle, { status: 201 })
+    // Créer les traductions si fournies
+    if (translations && Array.isArray(translations)) {
+      for (const translation of translations) {
+        if (translation.locale && (translation.bio || translation.features)) {
+          await prisma.vehicleTranslation.create({
+            data: {
+              vehicleId: vehicle.id,
+              locale: translation.locale,
+              bio: translation.bio || null,
+              features: translation.features || [],
+            },
+          })
+        }
+      }
+    }
+
+    // Récupérer le véhicule avec ses traductions
+    const vehicleWithTranslations = await prisma.vehicle.findUnique({
+      where: { id: vehicle.id },
+      include: {
+        translations: true,
+      },
+    })
+
+    return NextResponse.json(vehicleWithTranslations, { status: 201 })
   } catch (error) {
     console.error('Erreur lors de la création du véhicule:', error)
     return NextResponse.json(

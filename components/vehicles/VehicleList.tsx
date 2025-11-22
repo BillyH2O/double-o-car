@@ -4,6 +4,7 @@ import { Car } from "@/types"
 import { Vehicle } from "@/types"
 import VehicleCard from "./VehicleCard"
 import Loader from "@/components/ui/Loader"
+import { useTranslations } from "next-intl"
 
 interface VehicleListProps {
   cars: Car[]
@@ -14,6 +15,8 @@ interface VehicleListProps {
 }
 
 export default function VehicleList({ cars, vehicles, onVehicleClick, loading, error }: VehicleListProps) {
+  const t = useTranslations("vehicle")
+  
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -33,7 +36,7 @@ export default function VehicleList({ cars, vehicles, onVehicleClick, loading, e
   if (cars.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-white/60 font-montserrat">Aucun véhicule disponible avec ces filtres.</p>
+        <p className="text-white/60 font-montserrat">{t("noVehiclesFound")}</p>
       </div>
     )
   }

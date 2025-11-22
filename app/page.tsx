@@ -6,7 +6,6 @@ import { TestimonialsSection } from "@/components/features/landing/testimonies/t
 import { reviews } from "@/data/reviews";
 import { Navbar } from "@/components/layout/navbar";
 import FAQsThree from "@/components/features/landing/faq/FAQSection";
-import { Caroussel } from "@/components/features/landing/caroussel/Caroussel";
 import VehicleBrands from "@/components/vehicles/VehicleBrands";
 import PourquoiNous from "@/components/features/landing/why-us/PourquoiNous";
 import HeroSection3 from "@/components/features/hero/HeroSection3";
@@ -19,13 +18,13 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center justify-center gap-32">
+      <div className="flex flex-col items-center justify-center gap-16 sm:gap-24 md:gap-32">
         
         <HeroSection3 backgroundImage="/hero1.png" title="Prenez la route, On s'occupe du reste." description="Pensé pour vous rendre votre expérience plus agréable" darkEffect={true}/>
         <div className="hidden md:block"><VehicleBrands /></div>
       </div>
 
-      <div className="dark mt-24 w-full mx-auto">
+      <div className="dark mt-16 sm:mt-20 md:mt-24 w-full mx-auto flex flex-col gap-16 sm:gap-20 md:gap-24">
       
       <PourquoiNous/>
       <section id="avis">
@@ -39,7 +38,7 @@ export default function Home() {
         }))} />
       </section>
 
-    <div className="dark mt-24 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
+    <div className="dark w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14 flex flex-col gap-16 sm:gap-20 md:gap-24">
         <section id="faq">
           <FAQsThree />
         </section>
@@ -47,7 +46,7 @@ export default function Home() {
         <Simplicity />
         <CTASection
       badge={{
-        text: "Offres spéciales"
+        text: "CTA"
       }}
       title="Qu'attendez-vous ?"
       description="Réservez votre véhicule en ligne et profitez de nos meilleures offres"

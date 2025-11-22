@@ -1,10 +1,11 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 const nextConfig: NextConfig = {
   // Ensure Prisma engines are not bundled away by Turbopack/Next
-  experimental: {
-    serverComponentsExternalPackages: ["@prisma/client", "prisma"],
-  },
+  serverExternalPackages: ["@prisma/client", "prisma"],
   // Ensure the Prisma engine folder is traced into the server output
   outputFileTracingIncludes: {
     // Include for App Router API routes
@@ -23,4 +24,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

@@ -11,7 +11,7 @@ import VehicleList from "@/components/vehicles/VehicleList";
 import SearchCriteria from "@/components/vehicles/SearchCriteria";
 import { Navbar } from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
-
+import Loader from "@/components/ui/Loader";
 function VehiculesPageContent() {
   // Hooks personnalisés pour la logique métier
   const {
@@ -99,7 +99,7 @@ export default function VehiculesPage() {
         <div className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6">
           <div className="container mx-auto max-w-7xl">
             <div className="flex items-center justify-center min-h-[400px]">
-              <div className="text-white text-lg">Chargement...</div>
+              <Loader />
             </div>
           </div>
         </div>

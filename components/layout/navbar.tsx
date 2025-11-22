@@ -21,13 +21,16 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { navbarData } from "@/data/layout/footer/navbar";
+import { LanguageSelector } from "@/components/ui/language-selector";
 
 type NavbarProps = {
   solid?: boolean
 }
 
 export const Navbar = ({ solid = false }: NavbarProps) => {
+  const t = useTranslations("navbar");
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -41,10 +44,53 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
 
   const isSolid = solid || isScrolled;
 
+  // Structure des items du menu avec traductions
+  const menuItems = [
+    {
+      label: t("vehiclesLabel"),
+      href: navbarData.menuItems[0].href,
+      hasDropdown: false,
+    },
+    {
+      label: t("reviewsLabel"),
+      href: navbarData.menuItems[1].href,
+      hasDropdown: false,
+    },
+    {
+      label: t("faqLabel"),
+      href: navbarData.menuItems[2].href,
+      hasDropdown: false,
+    },
+    {
+      label: t("aboutLabel"),
+      href: navbarData.menuItems[3].href,
+      hasDropdown: false,
+    },
+  ];
+
+  const mobileMenuItems = [
+    {
+      label: t("vehiclesLabel"),
+      href: navbarData.mobileMenuItems[0].href,
+    },
+    {
+      label: t("reviewsLabel"),
+      href: navbarData.mobileMenuItems[1].href,
+    },
+    {
+      label: t("faqLabel"),
+      href: navbarData.mobileMenuItems[2].href,
+    },
+    {
+      label: t("aboutLabel"),
+      href: navbarData.mobileMenuItems[3].href,
+    },
+  ];
+
   return (
     <section
       className={`py-4 px-4 md:px-10 xl:px-20 w-full fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isSolid ? "bg-white/5 backdrop-blur-xl shadow-sm" : "bg-black"
+        isSolid ? "bg-black/5 backdrop-blur-xl shadow-sm" : "bg-black"
       }`}
     >
       <div className="container mx-auto">
@@ -56,15 +102,15 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
           >
             <Image 
               src={navbarData.logo.src} 
-              alt={navbarData.logo.alt} 
+              alt={t("logoAlt")} 
               width={navbarData.logo.width} 
               height={navbarData.logo.height}
-              className="h-8 w-auto sm:h-10 md:h-12"
+              className="h-14 w-auto sm:h-12 md:h-14"
             />
           </a>
           <NavigationMenu className="hidden lg:block">
             <NavigationMenuList>
-              {navbarData.menuItems.map((item, index) => (
+              {menuItems.map((item, index) => (
                 <NavigationMenuItem key={index}>
                   {item.hasDropdown ? (
                     <>
@@ -91,22 +137,22 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
           </NavigationMenu>
           </div>
           <div className="hidden items-center gap-4 lg:flex">
-          <Link href={navbarData.buttons.CTA1.href}>
+            <LanguageSelector />
+            <Link href={navbarData.buttons.CTA1.href}>
               <Button variant={navbarData.buttons.CTA1.variant as "outline" | "default"} className="hover:cursor-pointer bg-[#003CF0] hover:bg-[#003CF0] text-white">
-              {navbarData.buttons.CTA1.label}
-            </Button>
+                {t("reserveButton")}
+              </Button>
             </Link>
             <Link href={navbarData.buttons.CTA2.href}>
               <Button variant={navbarData.buttons.CTA2.variant as "outline" | "default"} className="text-white hover:cursor-pointer">
-              {navbarData.buttons.CTA2.label}
-            </Button>
+                {t("contactButton")}
+              </Button>
             </Link>
-            
           </div>
           <Sheet>
-            <SheetTrigger asChild className="lg:hidden">
+            <SheetTrigger asChild className="lg:hidden bg-black hover:bg-black/80 border-none">
               <Button variant="outline" size="icon">
-                <MenuIcon className="h-4 w-4 text-black" />
+                <MenuIcon className="h-4 w-4 text-white" />
               </Button>
             </SheetTrigger>
             <SheetContent side="top" className="max-h-screen bg-black overflow-auto">
@@ -118,36 +164,34 @@ export const Navbar = ({ solid = false }: NavbarProps) => {
                   >
                     <Image
                       src={navbarData.logo.src}
-                      alt={navbarData.logo.alt}
+                      alt={t("logoAlt")}
                       width={navbarData.logo.width}
                       height={navbarData.logo.height}
-                      className="h-12 w-auto"
+                      className="h-14 sm:h-16 w-auto"
                     />
-                    <span className="text-lg font-semibold tracking-tighter">
-                      Double-O Car
-                    </span>
                   </a>
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col p-4">
                 
                 <div className="flex flex-col gap-6">
-                  {navbarData.mobileMenuItems.map((item, index) => (
+                  {mobileMenuItems.map((item, index) => (
                     <a key={index} href={item.href} className="font-medium text-white hover:text-white/50 transition-colors">
                       {item.label}
                     </a>
                   ))}
                 </div>
                 <div className="mt-6 flex flex-col gap-4">
+                  <LanguageSelector mobile />
                   <Link href={navbarData.buttons.CTA1.href}>
                     <Button variant={navbarData.buttons.CTA1.variant as "outline" | "default"} className="w-full bg-[#003CF0] hover:bg-[#003CF0] text-white hover:cursor-pointer">
-                    {navbarData.buttons.CTA1.label}
-                  </Button>
+                      {t("reserveButton")}
+                    </Button>
                   </Link>
                   <Link href={navbarData.buttons.CTA2.href}>
                     <Button variant={navbarData.buttons.CTA2.variant as "outline" | "default"} className="w-full text-white hover:cursor-pointer">
-                    {navbarData.buttons.CTA2.label}
-                  </Button>
+                      {t("contactButton")}
+                    </Button>
                   </Link>
                 </div>
               </div>

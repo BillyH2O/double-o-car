@@ -52,10 +52,11 @@ export async function POST(
     const { id } = await params
     const body = await request.json()
 
-    const { startDate, endDate, reason } = body as {
+    const { startDate, endDate, reason, isFormalBooking } = body as {
       startDate: string
       endDate: string
       reason?: string
+      isFormalBooking?: boolean
     }
 
     if (!startDate || !endDate) {
@@ -78,6 +79,20 @@ export async function POST(
     // Vérifier que le véhicule existe
     const vehicle = await prisma.vehicle.findUnique({
       where: { id },
+      include: {
+        bookings: {
+          where: {
+            status: {
+              in: ['PENDING', 'CONFIRMED', 'ACTIVE'],
+            },
+          },
+        },
+        availability: {
+          where: {
+            isAvailable: false,
+          },
+        },
+      },
     })
 
     if (!vehicle) {
@@ -87,13 +102,52 @@ export async function POST(
       )
     }
 
+    // Fonction pour vérifier si deux périodes se chevauchent
+    const periodsOverlap = (
+      start1: Date,
+      end1: Date,
+      start2: Date,
+      end2: Date
+    ): boolean => {
+      return start1 <= end2 && end1 >= start2
+    }
+
+    // Vérifier les chevauchements avec les réservations existantes
+    const hasConflictingBooking = vehicle.bookings.some((booking) => {
+      const bookingStart = new Date(booking.startDate)
+      const bookingEnd = new Date(booking.endDate)
+      return periodsOverlap(start, end, bookingStart, bookingEnd)
+    })
+
+    if (hasConflictingBooking) {
+      return NextResponse.json(
+        { error: 'Cette période chevauche une réservation existante' },
+        { status: 400 }
+      )
+    }
+
+    // Vérifier les chevauchements avec les périodes d'indisponibilité existantes
+    const hasConflictingAvailability = vehicle.availability.some((period) => {
+      const periodStart = new Date(period.startDate)
+      const periodEnd = new Date(period.endDate)
+      return periodsOverlap(start, end, periodStart, periodEnd)
+    })
+
+    if (hasConflictingAvailability) {
+      return NextResponse.json(
+        { error: 'Cette période chevauche une autre période d\'indisponibilité existante' },
+        { status: 400 }
+      )
+    }
+
     const availability = await prisma.vehicleAvailability.create({
       data: {
         vehicleId: id,
         startDate: start,
         endDate: end,
         isAvailable: false,
-        reason: reason || 'Indisponibilité',
+        reason: reason || (isFormalBooking ? 'Réservation présentielle' : 'Indisponibilité'),
+        isFormalBooking: isFormalBooking ?? false,
       },
     })
 

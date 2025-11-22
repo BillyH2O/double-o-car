@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from "react"
 import { vehicleService } from "@/lib/services/vehicleService"
 import { Vehicle } from "@/types"
+import { useLocale } from "next-intl"
 
 export function useVehicleBySlug(slug: string | null) {
+  const locale = useLocale()
   const [vehicle, setVehicle] = useState<(Vehicle & { brandRelation?: { logo: string } | null }) | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -13,14 +15,14 @@ export function useVehicleBySlug(slug: string | null) {
     try {
       setLoading(true)
       setError(null)
-      const fetchedVehicle = await vehicleService.getVehicleBySlug(slug)
+      const fetchedVehicle = await vehicleService.getVehicleBySlug(slug, locale)
       setVehicle(fetchedVehicle)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Une erreur est survenue')
     } finally {
       setLoading(false)
     }
-  }, [slug])
+  }, [slug, locale])
 
   useEffect(() => {
     if (slug) {

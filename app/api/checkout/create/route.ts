@@ -3,7 +3,18 @@ import { prisma } from '@/lib/prisma'
 import { stripe } from '@/lib/stripe'
 
 function getBaseUrl() {
-  return process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'http://localhost:3000'
+  // En production, utiliser l'URL du site déployé
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    return process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, '')
+  }
+  
+  // Fallback pour Vercel
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`
+  }
+  
+  // Fallback pour localhost
+  return 'http://localhost:3000'
 }
 
 export async function POST(req: NextRequest) {

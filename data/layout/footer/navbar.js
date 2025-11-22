@@ -1,59 +1,50 @@
+// Données structurelles de la navbar (non traduisibles)
+// Les labels sont maintenant gérés par les traductions dans navbar.tsx
 export const navbarData = {
   logo: {
     src: "/logo.png",
-    alt: "Double-O Car",
     width: 120,
     height: 60,
     href: "/",
   },
   menuItems: [
     {
-      label: "Nos véhicules",
       href: "/vehicules",
       hasDropdown: false,
     },
     {
-      label: "Avis",
       href: "#avis",
       hasDropdown: false,
     },
     {
-      label: "FAQ",
       href: "#faq",
       hasDropdown: false,
     },
     {
-      label: "À propos",
       href: "/a-propos",
       hasDropdown: false,
     },
   ],
   mobileMenuItems: [
     {
-      label: "Nos véhicules",
       href: "/vehicules",
     },
     {
-      label: "Avis",
       href: "#avis",
     },
     {
-      label: "FAQ",
       href: "#faq",
     },
     {
-      label: "À propos",
       href: "/a-propos",
     },
   ],
   buttons: {
     CTA1: {
-      label: "Réserver",
       variant: "default",
       href: "/vehicules",
     },
     CTA2: {
-      label: "Contact",
       variant: "default",
       href: "/contact",
     },

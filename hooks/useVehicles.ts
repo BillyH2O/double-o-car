@@ -1,8 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Vehicle, UseVehiclesOptions, UseVehiclesReturn } from '@/types'
 import { vehicleService } from '@/lib/services/vehicleService'
+import { useLocale } from 'next-intl'
 
 export function useVehicles(options: UseVehiclesOptions = {}): UseVehiclesReturn {
+  const locale = useLocale()
   const [vehicles, setVehicles] = useState<Vehicle[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -19,7 +21,7 @@ export function useVehicles(options: UseVehiclesOptions = {}): UseVehiclesReturn
         transmission: options.transmission,
         startDate: options.startDate,
         endDate: options.endDate,
-      })
+      }, locale)
 
       setVehicles(data)
     } catch (err) {
@@ -28,7 +30,7 @@ export function useVehicles(options: UseVehiclesOptions = {}): UseVehiclesReturn
     } finally {
       setLoading(false)
     }
-  }, [options.isAvailable, options.brand, options.fuelType, options.transmission, options.startDate, options.endDate])
+  }, [options.isAvailable, options.brand, options.fuelType, options.transmission, options.startDate, options.endDate, locale])
 
   useEffect(() => {
     fetchVehicles()

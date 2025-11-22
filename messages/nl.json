@@ -1,0 +1,425 @@
+{
+  "common": {
+    "reserve": "Reserveren",
+    "search": "Zoeken",
+    "cancel": "Annuleren",
+    "confirm": "Bevestigen",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "save": "Opslaan",
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Succes",
+    "errorCode": "404",
+    "title": "Pagina niet gevonden",
+    "description": "Sorry, de pagina die u zoekt bestaat niet of is verplaatst.",
+    "backToHome": "Terug naar home",
+    "viewVehicles": "Bekijk onze voertuigen"
+  },
+  "nav": {
+    "home": "Home",
+    "vehicles": "Voertuigen",
+    "about": "Over ons",
+    "contact": "Contact",
+    "reviews": "Beoordelingen",
+    "faq": "FAQ"
+  },
+  "navbar": {
+    "vehiclesLabel": "Onze voertuigen",
+    "reviewsLabel": "Beoordelingen",
+    "faqLabel": "FAQ",
+    "aboutLabel": "Over ons",
+    "reserveButton": "Reserveren",
+    "contactButton": "Contact",
+    "logoAlt": "Double-O Car"
+  },
+  "hero": {
+    "title": "Ga de weg op, Wij zorgen voor de rest.",
+    "description": "Ontworpen om uw ervaring aangenamer te maken"
+  },
+  "whyUs": {
+    "title": "Waarom ons kiezen",
+    "description": "We zijn een kwaliteitsautoverhuurbedrijf, we hebben een toegewijd team om u een uitzonderlijke huurervaring te bieden.",
+    "items": [
+      {
+        "number": "500+",
+        "label": "Klanten"
+      },
+      {
+        "number": "150+",
+        "label": "Voertuigen beschikbaar"
+      },
+      {
+        "number": "4.8/5",
+        "label": "Gemiddelde beoordeling"
+      },
+      {
+        "number": "24/7",
+        "label": "Service beschikbaar"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Klantbeoordelingen",
+    "description": "Wat onze klanten zeiden"
+  },
+  "faq": {
+    "title": "Veelgestelde vragen",
+    "description": "Kunt u niet vinden wat u zoekt? Neem contact op met onze",
+    "link": "klantenservice",
+    "items": [
+      {
+        "question": "In welke stad kunt u de auto aan mij leveren?",
+        "answer": "We zijn gespecialiseerd in het leveren van auto's overal in Marrakech."
+      },
+      {
+        "question": "Welke documenten zijn nodig om een auto te huren?",
+        "answer": "U moet volwassen zijn, een geldig identiteitskaart en een geldig rijbewijs hebben."
+      },
+      {
+        "question": "Welke types auto's bieden jullie aan?",
+        "answer": "We bieden een range van stadauto's en familieauto's aan."
+      },
+      {
+        "question": "Welke betalingsmethoden accepteert u?",
+        "answer": "We accepteren betalingen via bankkaart, en in contanten."
+      },
+      {
+        "question": "Worden de auto's verzekerd?",
+        "answer": "Ja, alle auto's zijn verzekerd door onze partnerverzekeraar."
+      }
+    ]
+  },
+  "whoWeAre": {
+    "title": "Wie wij zijn",
+    "description1": "Huur uw auto met volledige gemoedsrust dankzij een eenvoudige, stressvrije service die is ontworpen om u tijd te besparen en uw ervaring aangenamer te maken.",
+    "description2": "Bij Double-O Car zijn we trots op het bieden van een uitzonderlijke huurervaring. Ons toegewijde team staat klaar om naar al uw behoeften te luisteren en u gedurende uw huurperiode te begeleiden. Of u nu een voertuig nodig heeft voor een weekend of voor een lange periode, wij hebben de oplossing die bij uw verwachtingen past."
+  },
+  "cta": {
+    "badge": "CTA",
+    "title": "Waar wacht u op?",
+    "description": "Boek uw voertuig online en geniet van onze beste aanbiedingen",
+    "button": "Reserveren"
+  },
+  "booking": {
+    "pickupLocation": "Ophaallocatie",
+    "returnLocation": "Terugbrenglocatie",
+    "pickupLocationLabel": "Vertreklocatie",
+    "returnLocationLabel": "Terugbrenglocatie",
+    "startDate": "Startdatum",
+    "endDate": "Einddatum",
+    "startTime": "Starttijd",
+    "endTime": "Eindtijd",
+    "dates": "Data",
+    "from": "Van",
+    "to": "Tot",
+    "time": "Tijd",
+    "search": "Zoek een voertuig",
+    "searchButton": "Zoeken",
+    "searchCar": "Zoek een auto",
+    "select": "Selecteren",
+    "selectDates": "Selecteer data",
+    "selectLocations": "Selecteer locaties",
+    "selectLocation": "Selecteer een locatie",
+    "selectDate": "Selecteer een datum",
+    "defaultLocation": "Luchthaven Marrakech",
+    "pickupLocationPlaceholder": "Ophaallocatie",
+    "returnLocationPlaceholder": "Terugbrenglocatie",
+    "enterPickupLocation": "Voer ophaallocatie in",
+    "enterReturnLocation": "Voer terugbrenglocatie in",
+    "useSameLocation": "Gebruik dezelfde locatie",
+    "sameReturnLocation": "Zelfde terugbrenglocatie",
+    "differentReturnLocation": "Verschillende terugbrenglocatie",
+    "confirm": "Bevestigen",
+    "loading": "Laden...",
+    "selectDatesMessage": "Selecteer alstublieft huurdata"
+  },
+  "vehicle": {
+    "description": "Beschrijving",
+    "features": "Kenmerken",
+    "equipment": "Uitrusting",
+    "characteristics": "Kenmerken",
+    "pricing": "Prijzen",
+    "pricePerDay": "Prijs per dag",
+    "pricePerWeek": "Prijs per week",
+    "pricePerMonth": "Prijs per maand",
+    "perWeek": "Per week",
+    "perMonth": "Per maand",
+    "availability": "Beschikbaarheid",
+    "availabilities": "Beschikbaarheden",
+    "available": "Beschikbaar",
+    "unavailable": "Niet beschikbaar",
+    "bookNow": "Nu boeken",
+    "totalPrice": "Totale prijs",
+    "days": "dag(en)",
+    "year": "Jaar",
+    "transmission": "Transmissie",
+    "fuel": "Brandstof",
+    "seats": "Plaatsen",
+    "doors": "Deuren",
+    "selectDatesMessage": "⚠️ Selecteer datums om te reserveren",
+    "checkingAvailability": "Beschikbaarheid controleren...",
+    "vehicleUnavailable": "Voertuig niet beschikbaar",
+    "availableForPeriod": "✅ Beschikbaar voor deze periode",
+    "backToList": "Terug naar lijst",
+    "vehicleNotFound": "Voertuig niet gevonden",
+    "noVehiclesFound": "Geen voertuigen beschikbaar met deze filters.",
+    "perDay": "/Dag",
+    "searchCriteria": "Zoekcriteria",
+    "departure": "Vertrek",
+    "return": "Terugkeer",
+    "period": "Periode"
+  },
+  "vehicleFilters": {
+    "title": "Filters",
+    "brand": "Merk",
+    "fuelType": "Brandstoftype",
+    "transmission": "Transmissie",
+    "all": "Alle",
+    "automatic": "Automatisch",
+    "manual": "Handmatig"
+  },
+  "about": {
+    "title": "Wie wij zijn",
+    "description1": "Huur uw auto met volledige gemoedsrust dankzij een eenvoudige, stressvrije service die is ontworpen om u tijd te besparen en uw ervaring aangenamer te maken.",
+    "description2": "Bij Double-O Car zijn we trots op het bieden van een uitzonderlijke huurervaring. Ons toegewijde team staat klaar om naar al uw behoeften te luisteren en u gedurende uw huurperiode te begeleiden. Of u nu een voertuig nodig heeft voor een weekend of voor een lange periode, wij hebben de oplossing die bij uw verwachtingen past."
+  },
+  "contact": {
+    "title": "CONTACTFORMULIER",
+    "subtitle": "Neem contact met ons op",
+    "description": "Aarzel niet om contact met ons op te nemen voor vragen of informatieverzoeken",
+    "lastName": "Achternaam",
+    "firstName": "Voornaam",
+    "email": "Email",
+    "phone": "Telefoon",
+    "message": "Bericht",
+    "send": "Verzenden",
+    "success": "Uw bericht is succesvol verzonden. Bedankt, we zullen snel reageren.",
+    "error": "Er is een fout opgetreden bij het verzenden van het bericht."
+  },
+  "checkout": {
+    "redirecting": "Doorverwijzen...",
+    "checkoutButton": "Dit voertuig boeken"
+  },
+  "privacy": {
+    "label": "Informatie",
+    "title": "PRIVACYBELEID",
+    "lastUpdate": "Laatst bijgewerkt: januari 2025",
+    "section1": {
+      "title": "1. Gegevensverzameling",
+      "intro": "Double-O Car verzamelt en verwerkt persoonlijke gegevens die u ons verstrekt bij het gebruik van onze diensten, waaronder:",
+      "items": [
+        "Naam, voornaam en contactgegevens (e-mail, telefoon, adres)",
+        "Betalingsinformatie (veilig verwerkt)",
+        "Voertuigreserveringsinformatie",
+        "Navigatiegegevens en cookies"
+      ]
+    },
+    "section2": {
+      "title": "2. Gebruik van gegevens",
+      "intro": "Uw persoonlijke gegevens worden gebruikt om:",
+      "items": [
+        "Uw voertuigreserveringen te verwerken",
+        "Uw verhuur en contracten te beheren",
+        "Contact met u op te nemen over uw reserveringen",
+        "Onze diensten en uw gebruikerservaring te verbeteren",
+        "Te voldoen aan onze wettelijke en regelgevende verplichtingen"
+      ]
+    },
+    "section3": {
+      "title": "3. Gegevensdeling",
+      "intro": "We verkopen nooit uw persoonlijke gegevens. We kunnen uw informatie delen met:",
+      "items": [
+        "Onze dienstverleners (hosting, betaling, e-mailverzending)",
+        "Onze voertuigverhuurpartners",
+        "Bevoegde autoriteiten indien vereist door de wet"
+      ]
+    },
+    "section4": {
+      "title": "4. Gegevensbeveiliging",
+      "text": "We implementeren passende technische en organisatorische maatregelen om uw persoonlijke gegevens te beschermen tegen ongeautoriseerde toegang, verlies, vernietiging of wijziging."
+    },
+    "section5": {
+      "title": "5. Uw rechten",
+      "intro": "In overeenstemming met de AVG heeft u de volgende rechten:",
+      "items": [
+        "Recht op toegang tot uw persoonlijke gegevens",
+        "Recht op rectificatie van onjuiste gegevens",
+        "Recht op verwijdering van uw gegevens",
+        "Recht op beperking van verwerking",
+        "Recht op gegevensoverdraagbaarheid",
+        "Recht van bezwaar tegen verwerking"
+      ],
+      "contact": "Om deze rechten uit te oefenen, neem contact met ons op via:"
+    },
+    "section6": {
+      "title": "6. Cookies",
+      "text": "Onze website gebruikt cookies om uw browse-ervaring te verbeteren. U kunt uw cookievoorkeuren beheren in de instellingen van uw browser."
+    },
+    "section7": {
+      "title": "7. Wijzigingen",
+      "text": "We behouden ons het recht voor om dit privacybeleid te allen tijde te wijzigen. Wijzigingen worden op deze pagina gepubliceerd met een update van de datum van laatste wijziging."
+    },
+    "section8": {
+      "title": "8. Contact",
+      "text": "Voor vragen over dit privacybeleid kunt u contact met ons opnemen via:",
+      "email": "E-mail:"
+    }
+  },
+  "legal": {
+    "label": "Informatie",
+    "title": "JURIDISCHE KENNISGEVING",
+    "subtitle": "Juridische informatie betreffende Double-O Car",
+    "section1": {
+      "title": "1. Uitgever van de site",
+      "intro": "De website double-o-car.fr wordt uitgegeven door:",
+      "companyName": "Bedrijfsnaam:",
+      "email": "E-mail:",
+      "website": "Website:"
+    },
+    "section2": {
+      "title": "2. Publicatiedirecteur",
+      "text": "De publicatiedirecteur is de wettelijke vertegenwoordiger van Double-O Car."
+    },
+    "section3": {
+      "title": "3. Hosting",
+      "text": "De site wordt gehost door een webhostingprovider. Voor informatie over hosting, neem contact met ons op."
+    },
+    "section4": {
+      "title": "4. Intellectueel eigendom",
+      "text": "Alle inhoud van deze site (teksten, afbeeldingen, video's, logo's, enz.) is het exclusieve eigendom van Double-O Car, tenzij anders vermeld. Elke reproductie, weergave, wijziging, publicatie of aanpassing van alle of een deel van de elementen van de site, ongeacht het gebruikte middel of proces, is verboden zonder voorafgaande schriftelijke toestemming van Double-O Car."
+    },
+    "section5": {
+      "title": "5. Bescherming van persoonlijke gegevens",
+      "text": "Persoonlijke gegevens die op deze site worden verzameld, worden verwerkt in overeenstemming met ons",
+      "privacyLink": "Privacybeleid",
+      "text2": "en de Algemene Verordening Gegevensbescherming (AVG)."
+    },
+    "section6": {
+      "title": "6. Cookies",
+      "text": "Deze site gebruikt cookies om de gebruikerservaring te verbeteren. Door verder te surfen op deze site, accepteert u het gebruik van cookies in overeenstemming met ons privacybeleid."
+    },
+    "section7": {
+      "title": "7. Aansprakelijkheidsbeperking",
+      "text1": "Double-O Car streeft ernaar de nauwkeurigheid en actualisering van informatie die op deze site wordt gepubliceerd te waarborgen. Double-O Car kan echter niet garanderen dat de informatie die op deze site beschikbaar wordt gesteld, nauwkeurig, precies of volledig is.",
+      "text2": "Double-O Car kan niet aansprakelijk worden gesteld voor directe of indirecte schade aan de apparatuur van de gebruiker bij toegang tot de site, hetzij als gevolg van het gebruik van apparatuur die niet aan de specificaties voldoet, hetzij door het optreden van een bug of incompatibiliteit."
+    },
+    "section8": {
+      "title": "8. Externe links",
+      "text": "De site kan links bevatten naar andere websites. Double-O Car is niet verantwoordelijk voor de inhoud van deze externe sites en wijst elke verantwoordelijkheid af met betrekking tot hun inhoud of toegankelijkheid."
+    },
+    "section9": {
+      "title": "9. Toepasselijk recht",
+      "text": "Deze juridische kennisgeving wordt beheerst door het Franse recht. In geval van geschil hebben alleen de Franse rechtbanken bevoegdheid."
+    },
+    "section10": {
+      "title": "10. Contact",
+      "text": "Voor vragen over deze juridische kennisgeving kunt u contact met ons opnemen via:",
+      "email": "E-mail:"
+    }
+  },
+  "aboutPage": {
+    "heroAlt": "Ons team",
+    "section1": {
+      "title": "Ons Verhaal",
+      "paragraph1": "Double-O Car is ontstaan uit een passie voor auto's en een verlangen om autoverhuur toegankelijk te maken voor iedereen. Opgericht in 2020, heeft ons bedrijf zich snel gevestigd als een referentiespeler in de autoverhuursector.",
+      "paragraph2": "We begonnen met een eenvoudige visie: een uitzonderlijke huurervaring bieden, waar elke klant zich gewaardeerd voelt en waar elk voertuig zorgvuldig wordt geselecteerd om aan de meest veeleisende behoeften te voldoen.",
+      "paragraph3": "Vandaag zijn we trots om een diverse vloot van moderne voertuigen aan te bieden, variërend van economische stadsauto's tot luxe sedans, inclusief ruime SUV's. Onze inzet voor excellentie en klanttevredenheid blijft centraal staan in alles wat we doen."
+    },
+    "section2": {
+      "title": "Onze Missie",
+      "paragraph1": "Bij Double-O Car is onze missie om de autoverhuurervaring te revolutioneren door gepersonaliseerde, transparante en toegankelijke service te bieden. We geloven dat elke reis verdient te beginnen met een uitzonderlijke ervaring.",
+      "paragraph2": "We verbinden ons ertoe:",
+      "items": [
+        "Voertuigen van superieure kwaliteit te bieden, regelmatig onderhouden en gecontroleerd",
+        "Transparante en concurrerende tarieven aan te bieden zonder verborgen kosten",
+        "Responsieve klantenservice te bieden die 7 dagen per week beschikbaar is",
+        "Het milieu te respecteren door brandstofzuinige voertuigen te promoten",
+        "Het boekingsproces te vereenvoudigen voor een soepele ervaring"
+      ]
+    },
+    "section3": {
+      "title": "Ons Team",
+      "cofounder": "Medeoprichter",
+      "brahim": {
+        "name": "Brahim",
+        "description": "Medeoprichter van Double-O Car, Brahim ontwikkelt dit bedrijf al 1 jaar met passie en vastberadenheid om de beste huurervaring te bieden."
+      },
+      "mohamed": {
+        "name": "Mohamed",
+        "description": "Medeoprichter van Double-O Car, Mohamed ontwikkelt dit bedrijf al 1 jaar met passie en vastberadenheid om de beste huurervaring te bieden."
+      }
+    },
+    "section4": {
+      "title": "Onze Waarden",
+      "excellence": {
+        "title": "Excellentie",
+        "text": "We streven naar excellentie in elk aspect van onze service, van voertuigselectie tot klantontvangst."
+      },
+      "transparency": {
+        "title": "Transparantie",
+        "text": "Geen verborgen kosten, geen verrassingen. We geloven in duidelijke en eerlijke communicatie met onze klanten."
+      },
+      "innovation": {
+        "title": "Innovatie",
+        "text": "We adopteren de nieuwste technologieën om de ervaring van onze klanten voortdurend te verbeteren."
+      },
+      "sustainability": {
+        "title": "Duurzaamheid",
+        "text": "We zetten ons in voor een groenere toekomst door brandstofzuinige voertuigen aan te bieden en duurzame praktijken te bevorderen."
+      }
+    }
+  },
+  "footer": {
+    "description": "Double-O Car - Kwaliteitsautoverhuur",
+    "links": "Snelle links",
+    "legal": "Juridische kennisgeving",
+    "privacy": "Privacybeleid",
+    "about": "Over ons",
+    "contact": "Neem contact met ons op",
+    "vehicles": "Voertuigen",
+    "rentalConditions": "Huurvoorwaarden",
+    "developedBy": "Ontwikkeld door",
+    "studio": "BlueStudio"
+  },
+  "calendar": {
+    "months": {
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Maart",
+      "april": "April",
+      "may": "Mei",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Augustus",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "December"
+    },
+    "days": {
+      "sunday": "Zo",
+      "monday": "Ma",
+      "tuesday": "Di",
+      "wednesday": "Wo",
+      "thursday": "Do",
+      "friday": "Vr",
+      "saturday": "Za"
+    },
+    "previousMonth": "Vorige maand",
+    "nextMonth": "Volgende maand"
+  },
+  "calendarLegend": {
+    "reserved": "Gereserveerd",
+    "available": "Beschikbaar",
+    "reservedUnavailable": "Gereserveerd / Niet beschikbaar"
+  },
+  "notFound": {
+    "errorCode": "404",
+    "title": "Pagina niet gevonden",
+    "description": "Sorry, de pagina die u zoekt bestaat niet of is verplaatst.",
+    "backToHome": "Terug naar de startpagina",
+    "viewVehicles": "Bekijk onze voertuigen"
+  }
+}
+

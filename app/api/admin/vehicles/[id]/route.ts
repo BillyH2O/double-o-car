@@ -12,6 +12,9 @@ export async function GET(
 
     const vehicle = await prisma.vehicle.findUnique({
       where: { id },
+      include: {
+        translations: true,
+      },
     })
 
     if (!vehicle) {
@@ -56,6 +59,7 @@ export async function PUT(
       bio,
       features,
       isAvailable,
+      translations,
     } = body
 
     // Vérifier que le véhicule existe
@@ -106,7 +110,7 @@ export async function PUT(
       finalSlug = `${slug}-${timestamp}`
     }
 
-    const vehicle = await prisma.vehicle.update({
+    await prisma.vehicle.update({
       where: { id },
       data: {
         ...(brand && { brand }),
@@ -129,7 +133,41 @@ export async function PUT(
       },
     })
 
-    return NextResponse.json(vehicle)
+    // Gérer les traductions
+    if (translations && Array.isArray(translations)) {
+      for (const translation of translations) {
+        if (translation.locale && (translation.bio || translation.features)) {
+          await prisma.vehicleTranslation.upsert({
+            where: {
+              vehicleId_locale: {
+                vehicleId: id,
+                locale: translation.locale,
+              },
+            },
+            update: {
+              bio: translation.bio || null,
+              features: translation.features || [],
+            },
+            create: {
+              vehicleId: id,
+              locale: translation.locale,
+              bio: translation.bio || null,
+              features: translation.features || [],
+            },
+          })
+        }
+      }
+    }
+
+    // Récupérer le véhicule avec ses traductions
+    const vehicleWithTranslations = await prisma.vehicle.findUnique({
+      where: { id },
+      include: {
+        translations: true,
+      },
+    })
+
+    return NextResponse.json(vehicleWithTranslations)
   } catch (error) {
     console.error('Erreur lors de la mise à jour du véhicule:', error)
     return NextResponse.json(

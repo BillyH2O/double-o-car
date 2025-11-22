@@ -12,13 +12,13 @@ interface AdminHeaderProps {
 export function AdminHeader({ title, backUrl, rightAction }: AdminHeaderProps) {
   const btnNameDesktop = "Retour au site"
   const btnNameMobile = "Retour"
-  const btnName = typeof window !== "undefined" && window.innerWidth < 768 ? btnNameMobile : btnNameDesktop
+  const btnName = typeof window !== "undefined" && window.innerWidth < 600 ? btnNameMobile : btnNameDesktop
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-sm border-b border-white/10">
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
         {/* Logo */}
         <div className="flex items-center gap-4">
-        <Link href="/" className="flex items-center">
+        <Link href="/admin" className="flex items-center">
           <Image 
             src="/logo.png" 
             alt="Double-O Car" 

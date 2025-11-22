@@ -138,6 +138,23 @@ export async function GET(
       },
     })
 
+    // Récupérer le véhicule avec son prix par jour
+    const vehicleWithPrice = await prisma.vehicle.findUnique({
+      where: { id },
+      select: {
+        pricePerDay: true,
+      },
+    })
+
+    if (!vehicleWithPrice) {
+      return NextResponse.json(
+        { error: 'Véhicule non trouvé' },
+        { status: 404 }
+      )
+    }
+
+    const pricePerDay = Number(vehicleWithPrice.pricePerDay)
+
     // Récupérer toutes les périodes d'indisponibilité qui chevauchent la période
     const unavailabilityPeriods = await prisma.vehicleAvailability.findMany({
       where: {
@@ -179,27 +196,50 @@ export async function GET(
     })
 
     // Ajouter les jours d'indisponibilité
-    unavailabilityPeriods.forEach((period: { startDate: Date | string; endDate: Date | string }) => {
+    // Seules les périodes avec isFormalBooking=true sont comptées comme réservations
+    unavailabilityPeriods.forEach((period: { startDate: Date | string; endDate: Date | string; isFormalBooking?: boolean }) => {
       const periodStart = new Date(period.startDate)
       const periodEnd = new Date(period.endDate)
       
       const effectiveStart = periodStart < startDate ? startDate : periodStart
       const effectiveEnd = periodEnd > endDate ? endDate : periodEnd
       
-      const currentDate = new Date(effectiveStart)
-      while (currentDate <= effectiveEnd) {
-        const dayKey = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`
-        bookedDaysSet.add(dayKey)
-        currentDate.setDate(currentDate.getDate() + 1)
+      // Seulement ajouter aux jours réservés si c'est une réservation présentielle
+      if (period.isFormalBooking) {
+        const currentDate = new Date(effectiveStart)
+        while (currentDate <= effectiveEnd) {
+          const dayKey = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`
+          bookedDaysSet.add(dayKey)
+          currentDate.setDate(currentDate.getDate() + 1)
+        }
       }
     })
+
+    // Calculer le revenu des réservations présentielle
+    const formalBookingRevenue = unavailabilityPeriods
+      .filter((period: { isFormalBooking?: boolean }) => period.isFormalBooking === true)
+      .reduce((total: number, period: { startDate: Date | string; endDate: Date | string }) => {
+        const periodStart = new Date(period.startDate)
+        const periodEnd = new Date(period.endDate)
+        
+        // Calculer la période effective dans la période demandée
+        const effectiveStart = periodStart < startDate ? startDate : periodStart
+        const effectiveEnd = periodEnd > endDate ? endDate : periodEnd
+        
+        if (effectiveStart <= effectiveEnd) {
+          const daysInPeriod = calculateDaysBetween(effectiveStart, effectiveEnd)
+          // Calculer le revenu : prix par jour × nombre de jours dans la période
+          return total + (pricePerDay * daysInPeriod)
+        }
+        return total
+      }, 0)
 
     const bookedDaysCount = bookedDaysSet.size
     const availableDaysCount = totalDays - bookedDaysCount
     const fillRate = totalDays > 0 ? (bookedDaysCount / totalDays) * 100 : 0
 
     // Calculer le chiffre d'affaires pour la période
-    // On prend les réservations CONFIRMED qui chevauchent la période
+    // On prend les réservations CONFIRMED et ACTIVE qui chevauchent la période
     let revenue = 0
     
     type BookingWithDecimal = {
@@ -209,34 +249,41 @@ export async function GET(
       status: string
     }
     
+    // Calculer le revenu pour toutes les réservations qui chevauchent la période
     bookings
-      .filter((booking: BookingWithDecimal) => booking.status === 'CONFIRMED')
+      .filter((booking: BookingWithDecimal) => 
+        booking.status === 'CONFIRMED' || booking.status === 'ACTIVE'
+      )
       .forEach((booking: BookingWithDecimal) => {
         const bookingStart = new Date(booking.startDate)
         const bookingEnd = new Date(booking.endDate)
         
         // Si la réservation chevauche la période, calculer la part du CA pour cette période
         if (bookingStart <= endDate && bookingEnd >= startDate) {
-          // Calculer le nombre de jours dans la période pour cette réservation
+          // Calculer la période effective de la réservation dans la période demandée
           const effectiveStart = bookingStart < startDate ? startDate : bookingStart
           const effectiveEnd = bookingEnd > endDate ? endDate : bookingEnd
           
-          const daysInPeriod = Math.ceil(
-            (effectiveEnd.getTime() - effectiveStart.getTime()) / (1000 * 60 * 60 * 24)
-          ) + 1
+          // Calculer le nombre de jours dans la période pour cette réservation
+          const daysInPeriod = calculateDaysBetween(effectiveStart, effectiveEnd)
           
-          const totalBookingDays = Math.ceil(
-            (bookingEnd.getTime() - bookingStart.getTime()) / (1000 * 60 * 60 * 24)
-          ) + 1
+          // Calculer le nombre total de jours de la réservation
+          const totalBookingDays = calculateDaysBetween(bookingStart, bookingEnd)
           
           // Calculer la part proportionnelle du CA
-          // totalPrice est de type Decimal de Prisma, on le convertit en nombre
+          // Si la réservation est entièrement dans la période, on compte 100% du montant
+          // Sinon, on compte proportionnellement
           const bookingRevenue = Number(booking.totalPrice)
-          const proportionalRevenue = totalBookingDays > 0 ? (daysInPeriod / totalBookingDays) * bookingRevenue : 0
+          const proportionalRevenue = totalBookingDays > 0 
+            ? (daysInPeriod / totalBookingDays) * bookingRevenue 
+            : 0
           
           revenue += proportionalRevenue
         }
       })
+
+    // Ajouter le revenu des réservations présentielle
+    revenue += formalBookingRevenue
 
     return NextResponse.json({
       period: year && month !== null ? undefined : period,

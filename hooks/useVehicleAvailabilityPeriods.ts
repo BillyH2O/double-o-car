@@ -7,7 +7,7 @@ interface UseVehicleAvailabilityPeriodsReturn {
   loading: boolean
   error: string | null
   refetch: () => Promise<void>
-  createPeriod: (data: { startDate: string; endDate: string; reason?: string }) => Promise<void>
+  createPeriod: (data: { startDate: string; endDate: string; reason?: string; isFormalBooking?: boolean }) => Promise<void>
   deletePeriod: (availabilityId: string) => Promise<void>
 }
 
@@ -32,7 +32,7 @@ export function useVehicleAvailabilityPeriods(vehicleId: string): UseVehicleAvai
     }
   }, [vehicleId])
 
-  const createPeriod = useCallback(async (data: { startDate: string; endDate: string; reason?: string }) => {
+  const createPeriod = useCallback(async (data: { startDate: string; endDate: string; reason?: string; isFormalBooking?: boolean }) => {
     if (!data.startDate || !data.endDate) {
       throw new Error('Veuillez remplir les dates')
     }

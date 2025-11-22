@@ -5,8 +5,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import LocationModal from "@/components/ui/LocationModal";
 import DatePickerModal from "@/components/ui/DatePickerModal";
+import { useTranslations, useLocale } from "next-intl";
 
 function CompactBookingFormContent() {
+  const t = useTranslations("booking");
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -14,8 +17,8 @@ function CompactBookingFormContent() {
   const [isDateModalOpen, setIsDateModalOpen] = useState(false);
   
   // États pour les valeurs du formulaire
-  const [pickupLocation, setPickupLocation] = useState('Aéroport de Marrakech');
-  const [returnLocation, setReturnLocation] = useState('Aéroport de Marrakech');
+  const [pickupLocation, setPickupLocation] = useState(t("defaultLocation"));
+  const [returnLocation, setReturnLocation] = useState(t("defaultLocation"));
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [startTime, setStartTime] = useState("10:00");
@@ -44,7 +47,7 @@ function CompactBookingFormContent() {
     // Vérifier que les dates sont bien définies
     if (!startDate || !endDate) {
       console.warn('⚠️ Dates manquantes:', { startDate, endDate });
-      alert('Veuillez sélectionner des dates de location');
+      alert(t("selectDatesMessage"));
       return;
     }
     
@@ -68,7 +71,7 @@ function CompactBookingFormContent() {
     try {
       const date = new Date(dateString);
       if (isNaN(date.getTime())) return null;
-      return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+      return date.toLocaleDateString(locale, { day: 'numeric', month: 'short' });
     } catch {
       return null;
     }
@@ -79,7 +82,7 @@ function CompactBookingFormContent() {
   
   const displayDates = formattedStartDate && formattedEndDate
     ? `${formattedStartDate} - ${formattedEndDate}`
-    : "Sélectionner les dates";
+    : t("selectDates");
 
   return (
     <>
@@ -98,7 +101,7 @@ function CompactBookingFormContent() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <label className="block text-xs text-gray-400 mb-1 font-montserrat font-bold">
-                    Lieu de départ
+                    {t("pickupLocationLabel")}
                   </label>
                   <div className="text-black text-sm font-montserrat font-medium">
                     {pickupLocation}
@@ -118,7 +121,7 @@ function CompactBookingFormContent() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <label className="block text-xs text-gray-400 mb-1 font-montserrat font-bold">
-                    Dates
+                    {t("dates")}
                   </label>
                   <div className="text-black text-sm font-montserrat font-medium">
                     {displayDates}
@@ -133,7 +136,7 @@ function CompactBookingFormContent() {
                 onClick={handleSearch}
                 className="w-full md:w-auto md:px-6 bg-[#003CF0] hover:bg-[#0034D0] text-white py-3 px-6 rounded-xl transition-colors font-montserrat font-semibold text-sm whitespace-nowrap h-10 flex items-center justify-center"
               >
-                Rechercher
+                {t("searchButton")}
               </button>
             </div>
           </div>
@@ -170,12 +173,14 @@ function CompactBookingFormContent() {
 }
 
 export default function CompactBookingForm() {
+  const t = useTranslations("booking");
+  
   return (
     <Suspense fallback={
       <div className="bg-white rounded-2xl shadow-lg overflow-hidden mx-auto w-full">
         <div className="bg-white p-4 md:p-6">
           <div className="flex flex-col md:flex-row md:items-end gap-4 md:gap-4">
-            <div className="text-center text-gray-400 py-8">Chargement...</div>
+            <div className="text-center text-gray-400 py-8">{t("loading")}</div>
           </div>
         </div>
       </div>

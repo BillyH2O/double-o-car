@@ -1,13 +1,19 @@
 import { useRouter } from "next/navigation"
+import { GlobalStats } from "./GlobalStats"
 
 export function AdminDashboard() {
   const router = useRouter()
 
   return (
-    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8">
-      <h2 className="text-white text-2xl font-montserrat font-semibold mb-6">Gestion du site</h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="space-y-6">
+      {/* Statistiques globales */}
+      <GlobalStats />
+
+      {/* Gestion du site */}
+      <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8">
+        <h2 className="text-white text-2xl font-montserrat font-semibold mb-6">Gestion du site</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <DashboardCard
           icon={
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -29,6 +35,7 @@ export function AdminDashboard() {
           description="Voir et gérer les réservations"
           onClick={() => router.push('/admin/bookings')}
         />
+        </div>
       </div>
     </div>
   )
@@ -45,7 +52,7 @@ function DashboardCard({ icon, title, description, onClick }: DashboardCardProps
   return (
     <button
       onClick={onClick}
-      className="bg-[#003CF0] hover:bg-[#0031c0] text-white rounded-xl p-6 transition-colors text-left"
+      className="hover:cursor-pointer bg-[#003CF0] hover:bg-[#003CF0]/70 text-white rounded-xl p-6 transition-colors text-left"
     >
       <div className="flex items-center gap-4 mb-2">
         {icon}

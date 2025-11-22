@@ -11,6 +11,7 @@ interface Availability {
   endDate: string | Date
   reason: string | null
   isAvailable: boolean
+  isFormalBooking: boolean
 }
 
 interface VehicleAvailabilityResponse {
@@ -22,6 +23,7 @@ interface CreateAvailabilityPayload {
   startDate: string
   endDate: string
   reason?: string
+  isFormalBooking?: boolean
 }
 
 interface CheckAvailabilityResponse {
@@ -59,7 +61,7 @@ class VehicleAvailabilityService {
     })
 
     if (!response.ok) {
-      const error = await response.json()
+      const error = await response.json().catch(() => ({ error: 'Erreur lors de la création' }))
       throw new Error(error.error || 'Erreur lors de la création')
     }
 

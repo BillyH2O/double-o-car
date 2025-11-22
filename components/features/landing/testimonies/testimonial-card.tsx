@@ -3,7 +3,6 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar"
 
 export interface TestimonialAuthor {
   name: string
-  handle: string
   avatar: string
 }
 
@@ -43,9 +42,6 @@ export function TestimonialCard({
           <h3 className="text-md font-semibold leading-none">
             {author.name}
           </h3>
-          <p className="text-sm text-muted-foreground">
-            {author.handle}
-          </p>
         </div>
       </div>
       <p className="sm:text-md mt-4 text-sm text-muted-foreground">

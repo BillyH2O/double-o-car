@@ -11,6 +11,7 @@ async function main() {
   console.log('🧹 Nettoyage des données existantes...')
   await prisma.booking.deleteMany()
   await prisma.vehicleAvailability.deleteMany()
+  await prisma.vehicleTranslation.deleteMany() // Nettoyer les traductions aussi
   await prisma.vehicle.deleteMany()
   await prisma.article.deleteMany()
   await prisma.user.deleteMany()
@@ -30,7 +31,7 @@ async function main() {
   })
   console.log('✅ Admin créé:', admin.email)
 
-  // Créer les véhicules depuis vos données
+  // Créer les véhicules depuis vos données avec leurs traductions
   const vehiclesData = [
     {
       brand: 'DC',
@@ -48,6 +49,16 @@ async function main() {
       bio: 'Renault Clio V 2024 - Voiture compacte idéale pour la ville. Confortable et économique. Parfaite pour vos déplacements quotidiens.',
       features: ['GPS', 'Climatisation', 'Bluetooth', 'Caméra de recul', 'Régulateur de vitesse'],
       isAvailable: true,
+      translations: {
+        en: {
+          bio: 'Renault Clio V 2024 - Compact car ideal for the city. Comfortable and economical. Perfect for your daily trips.',
+          features: ['GPS', 'Air Conditioning', 'Bluetooth', 'Rear Camera', 'Cruise Control'],
+        },
+        nl: {
+          bio: 'Renault Clio V 2024 - Compacte auto ideaal voor de stad. Comfortabel en zuinig. Perfect voor uw dagelijkse verplaatsingen.',
+          features: ['GPS', 'Airconditioning', 'Bluetooth', 'Achteruitrijcamera', 'Snelheidsregelaar'],
+        },
+      },
     },
     {
       brand: 'Renault',
@@ -65,6 +76,16 @@ async function main() {
       bio: 'Renault Clio V 2024 - Version diesel manuelle. Économique et performante. Idéale pour les longs trajets.',
       features: ['GPS', 'Climatisation', 'Bluetooth', 'Régulateur de vitesse'],
       isAvailable: true,
+      translations: {
+        en: {
+          bio: 'Renault Clio V 2024 - Manual diesel version. Economical and efficient. Ideal for long trips.',
+          features: ['GPS', 'Air Conditioning', 'Bluetooth', 'Cruise Control'],
+        },
+        nl: {
+          bio: 'Renault Clio V 2024 - Handmatige dieselveversie. Zuinig en efficiënt. Ideaal voor lange ritten.',
+          features: ['GPS', 'Airconditioning', 'Bluetooth', 'Snelheidsregelaar'],
+        },
+      },
     },
     {
       brand: 'Dacia',
@@ -82,6 +103,16 @@ async function main() {
       bio: 'Dacia Logan 2024 - Berline spacieuse et confortable. Parfaite pour les longs trajets et les familles.',
       features: ['GPS', 'Climatisation', 'Bluetooth', 'Caméra de recul', 'Régulateur de vitesse', 'Limiteur de vitesse'],
       isAvailable: true,
+      translations: {
+        en: {
+          bio: 'Dacia Logan 2024 - Spacious and comfortable sedan. Perfect for long trips and families.',
+          features: ['GPS', 'Air Conditioning', 'Bluetooth', 'Rear Camera', 'Cruise Control', 'Speed Limiter'],
+        },
+        nl: {
+          bio: 'Dacia Logan 2024 - Ruime en comfortabele sedan. Perfect voor lange ritten en gezinnen.',
+          features: ['GPS', 'Airconditioning', 'Bluetooth', 'Achteruitrijcamera', 'Snelheidsregelaar', 'Snelheidsbegrenzer'],
+        },
+      },
     },
     {
       brand: 'Dacia',
@@ -99,12 +130,25 @@ async function main() {
       bio: 'Dacia Logan 2024 - Version diesel manuelle. Idéale pour un usage quotidien et économique.',
       features: ['GPS', 'Climatisation', 'Bluetooth', 'Régulateur de vitesse'],
       isAvailable: true,
+      translations: {
+        en: {
+          bio: 'Dacia Logan 2024 - Manual diesel version. Ideal for daily use and economical.',
+          features: ['GPS', 'Air Conditioning', 'Bluetooth', 'Cruise Control'],
+        },
+        nl: {
+          bio: 'Dacia Logan 2024 - Handmatige dieselveversie. Ideaal voor dagelijks gebruik en zuinig.',
+          features: ['GPS', 'Airconditioning', 'Bluetooth', 'Snelheidsregelaar'],
+        },
+      },
     },
   ]
 
   let batMobileId: string | null = null
 
   for (const vehicleData of vehiclesData) {
+    // Extraire les traductions avant de créer le véhicule
+    const { translations, ...vehicleDataWithoutTranslations } = vehicleData
+    
     // Générer le slug pour chaque véhicule
     const slug = generateSlug(
       vehicleData.brand,
@@ -116,7 +160,7 @@ async function main() {
     
     const vehicle = await prisma.vehicle.create({
       data: {
-        ...vehicleData,
+        ...vehicleDataWithoutTranslations,
         // Prisma attend des enums pour fuelType et transmission
         fuelType: vehicleData.fuelType.toString().toUpperCase() as FuelType,
         transmission: vehicleData.transmission.toString().toUpperCase() as Transmission,
@@ -124,6 +168,21 @@ async function main() {
       },
     })
     console.log(`✅ Véhicule créé: ${vehicle.brand} ${vehicle.model} (${vehicle.fuelType}, ${vehicle.transmission}) - Slug: ${slug}`)
+    
+    // Ajouter les traductions pour ce véhicule
+    if (translations) {
+      for (const [locale, translation] of Object.entries(translations)) {
+        await prisma.vehicleTranslation.create({
+          data: {
+            vehicleId: vehicle.id,
+            locale: locale as 'en' | 'nl',
+            bio: translation.bio,
+            features: translation.features,
+          },
+        })
+        console.log(`  ✅ Traduction ${locale.toUpperCase()} ajoutée`)
+      }
+    }
     
     // Sauvegarder l'ID de la BatMobile pour ajouter une période d'indisponibilité
     if (vehicleData.brand === 'DC' && vehicleData.model === 'BatMobile') {

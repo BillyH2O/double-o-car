@@ -13,6 +13,7 @@ import { BasicInfoFields } from "@/components/admin/vehicles/form/BasicInfoField
 import { ImageFields } from "@/components/admin/vehicles/form/ImageFields"
 import { DescriptionField } from "@/components/admin/vehicles/form/DescriptionField"
 import { FeaturesField } from "@/components/admin/vehicles/form/FeaturesField"
+import { TranslationFields } from "@/components/admin/vehicles/form/TranslationFields"
 import { AvailabilityField } from "@/components/admin/vehicles/form/AvailabilityField"
 import { FormActions } from "@/components/admin/vehicles/form/FormActions"
 
@@ -30,6 +31,9 @@ export default function EditVehiclePage() {
     removeFeature,
     addImage,
     removeImage,
+    updateTranslation,
+    addTranslationFeature,
+    removeTranslationFeature,
     getPayload,
   } = useVehicleForm(vehicle || undefined)
   const { submit, saving, error: submitError } = useVehicleSubmit(id, isNew)
@@ -96,6 +100,13 @@ export default function EditVehiclePage() {
               formData={formData}
               addFeature={addFeature}
               removeFeature={removeFeature}
+            />
+
+            <TranslationFields
+              formData={formData}
+              updateTranslation={updateTranslation}
+              addTranslationFeature={addTranslationFeature}
+              removeTranslationFeature={removeTranslationFeature}
             />
 
             <AvailabilityField formData={formData} updateField={updateField} />

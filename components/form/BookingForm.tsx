@@ -5,19 +5,22 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import LocationModal from "@/components/ui/LocationModal";
 import DatePickerModal from "@/components/ui/DatePickerModal";
+import { useTranslations, useLocale } from "next-intl";
 
 interface BookingFormProps {
   onSearch: () => void;
 }
 
 export default function BookingForm({ onSearch }: BookingFormProps) {
+  const t = useTranslations("booking");
+  const locale = useLocale();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("same");
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
   const [isDateModalOpen, setIsDateModalOpen] = useState(false);
   
-  const [pickupLocation, setPickupLocation] = useState("Aéroport de Marrakech");
-  const [returnLocation, setReturnLocation] = useState("Aéroport de Tanger");
+  const [pickupLocation, setPickupLocation] = useState(t("defaultLocation"));
+  const [returnLocation, setReturnLocation] = useState(t("defaultLocation"));
   
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -39,9 +42,9 @@ export default function BookingForm({ onSearch }: BookingFormProps) {
 
   // Formater les dates pour l'affichage
   const formatDate = (dateString: string) => {
-    if (!dateString) return "Sélectionner";
+    if (!dateString) return t("select");
     const date = new Date(dateString);
-    return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+    return date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   return (
@@ -53,7 +56,7 @@ export default function BookingForm({ onSearch }: BookingFormProps) {
           className={`flex-1 py-4 sm:py-5 md:py-6 px-3 sm:px-6 md:px-8 font-montserrat font-medium text-sm sm:text-base md:text-lg transition-colors relative ${activeTab === "same" ? "bg-white text-black" : "bg-black text-white"
             }`}
         >
-          Lieu de retour identique
+          {t("sameReturnLocation")}
           {activeTab === "same" && (
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-[#003CF099] rounded-full"></div>
           )}
@@ -63,7 +66,7 @@ export default function BookingForm({ onSearch }: BookingFormProps) {
           className={`flex-1 py-4 sm:py-5 md:py-6 px-3 sm:px-6 md:px-8 font-montserrat font-medium text-sm sm:text-base md:text-lg transition-colors relative ${activeTab === "different" ? "bg-white text-black" : "bg-black text-white"
             }`}
         >
-          Lieu de retour différent
+          {t("differentReturnLocation")}
           {activeTab === "different" && (
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-[#003CF099] rounded-full"></div>
           )}
@@ -83,7 +86,7 @@ export default function BookingForm({ onSearch }: BookingFormProps) {
             </div>
             <div className="flex-1 ml-4 sm:ml-8 md:ml-12">
               <label className="block text-xs sm:text-sm md:text-base text-gray-400 mb-1 md:mb-2 font-montserrat font-bold font-weight-700">
-                Lieu de départ
+                {t("pickupLocationLabel")}
               </label>
               <div className="text-black text-base sm:text-lg md:text-xl font-montserrat font-medium font-weight-500">
                 {pickupLocation}
@@ -117,7 +120,7 @@ export default function BookingForm({ onSearch }: BookingFormProps) {
             </div>
             <div className="flex-1 ml-4 sm:ml-8 md:ml-12">
               <label className="block text-xs sm:text-sm md:text-base text-gray-400 mb-1 md:mb-2 font-montserrat font-bold font-weight-700">
-                Lieu de retour
+                {t("returnLocationLabel")}
               </label>
               <div className="text-black text-base sm:text-lg md:text-xl font-montserrat font-medium font-weight-500">
                 {returnLocation}
@@ -135,10 +138,10 @@ export default function BookingForm({ onSearch }: BookingFormProps) {
         >
           <div className="flex-1">
             <label className="block text-xs sm:text-sm md:text-base text-[#0000004D] mb-1 sm:mb-2 md:mb-3 font-montserrat font-bold font-weight-700">
-              Du
+              {t("from")}
             </label>
             <div className="text-black text-sm sm:text-lg md:text-xl font-montserrat font-medium font-weight-500">
-              {startDate ? formatDate(startDate) : "Sélectionner"}
+              {startDate ? formatDate(startDate) : t("select")}
             </div>
             <div className="text-black text-sm sm:text-lg md:text-xl font-montserrat font-medium font-weight-500">
               {startTime ? `${startTime}` : ""}
@@ -153,10 +156,10 @@ export default function BookingForm({ onSearch }: BookingFormProps) {
 
           <div className="flex-1 flex flex-col items-end">
             <label className="block text-xs sm:text-sm md:text-base text-[#0000004D] mb-1 sm:mb-2 md:mb-3 font-montserrat font-bold font-weight-700">
-              Au
+              {t("to")}
             </label>
             <div className="text-black text-sm sm:text-lg md:text-xl font-montserrat font-medium font-weight-500 text-right">
-              {endDate ? formatDate(endDate) : "Sélectionner"}
+              {endDate ? formatDate(endDate) : t("select")}
             </div>
             <div className="text-black text-sm sm:text-lg md:text-xl font-montserrat font-medium font-weight-500">
               {endTime ? `${endTime}` : ""}
@@ -169,7 +172,7 @@ export default function BookingForm({ onSearch }: BookingFormProps) {
           onClick={handleSearch}
           className="w-full bg-[#003CF0] hover:bg-[#0034D0] text-white py-4 sm:py-5 md:py-6 rounded-[30px] transition-colors font-montserrat font-semibold text-base sm:text-lg md:text-xl"
         >
-          Rechercher une voiture
+          {t("searchCar")}
         </button>
       </div>
 

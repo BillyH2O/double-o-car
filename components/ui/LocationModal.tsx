@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface LocationModalProps {
   isOpen: boolean;
@@ -21,6 +22,8 @@ export default function LocationModal({
   onReturnChange,
   onConfirm,
 }: LocationModalProps) {
+  const t = useTranslations("booking");
+  
   if (!isOpen) return null;
 
   return (
@@ -36,12 +39,12 @@ export default function LocationModal({
           </svg>
         </button>
 
-        <h2 className="text-xl font-montserrat font-bold text-black mb-6">Sélectionner les lieux</h2>
+        <h2 className="text-xl font-montserrat font-bold text-black mb-6">{t("selectLocations")}</h2>
 
         {/* Pickup Location */}
         <div className="mb-6">
           <label className="block text-sm text-gray-600 mb-2 font-montserrat font-semibold">
-            Lieu de récupération
+            {t("pickupLocationPlaceholder")}
           </label>
           <div className="flex items-center gap-3 border border-gray-200 rounded-lg p-3 focus-within:border-[#003CF0] transition-colors">
             <Image src="/position.png" alt="Location" width={20} height={20} />
@@ -50,7 +53,7 @@ export default function LocationModal({
               value={pickupLocation}
               onChange={(e) => onPickupChange(e.target.value)}
               className="flex-1 outline-none text-black font-montserrat"
-              placeholder="Entrez le lieu de récupération"
+              placeholder={t("enterPickupLocation")}
             />
           </div>
         </div>
@@ -58,7 +61,7 @@ export default function LocationModal({
         {/* Return Location */}
         <div className="mb-6">
           <label className="block text-sm text-gray-600 mb-2 font-montserrat font-semibold">
-            Lieu de restitution
+            {t("returnLocationPlaceholder")}
           </label>
           <div className="flex items-center gap-3 border border-gray-200 rounded-lg p-3 focus-within:border-[#003CF0] transition-colors">
             <Image src="/position.png" alt="Location" width={20} height={20} />
@@ -67,14 +70,14 @@ export default function LocationModal({
               value={returnLocation}
               onChange={(e) => onReturnChange(e.target.value)}
               className="flex-1 outline-none text-black font-montserrat"
-              placeholder="Entrez le lieu de restitution"
+              placeholder={t("enterReturnLocation")}
             />
           </div>
           <button
             onClick={() => onReturnChange(pickupLocation)}
             className="mt-2 text-sm text-[#003CF0] hover:text-[#0034D0] font-montserrat font-medium transition-colors"
           >
-            Utiliser le même lieu
+            {t("useSameLocation")}
           </button>
         </div>
 
@@ -86,7 +89,7 @@ export default function LocationModal({
           }}
           className="w-full bg-[#003CF0] hover:bg-[#0034D0] text-white py-3 rounded-lg transition-colors font-montserrat font-semibold"
         >
-          Confirmer
+          {t("confirm")}
         </button>
       </div>
     </div>

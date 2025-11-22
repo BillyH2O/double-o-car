@@ -1,4 +1,11 @@
 import { Vehicle } from "@/types"
+import { fetchWithLocale } from "@/lib/utils/apiClient"
+
+export interface VehicleTranslation {
+  locale: 'en' | 'nl'
+  bio: string
+  features: string[]
+}
 
 export interface VehicleFormData {
   brand: string
@@ -16,6 +23,7 @@ export interface VehicleFormData {
   bio: string
   features: string[]
   isAvailable: boolean
+  translations: VehicleTranslation[]
 }
 
 export interface VehiclePayload {
@@ -34,6 +42,7 @@ export interface VehiclePayload {
   bio: string
   features: string[]
   isAvailable: boolean
+  translations?: VehicleTranslation[]
 }
 
 class VehicleService {
@@ -45,8 +54,8 @@ class VehicleService {
     return response.json()
   }
 
-  async getVehicleBySlug(slug: string): Promise<Vehicle & { brandRelation?: { logo: string } | null }> {
-    const response = await fetch(`/api/vehicles/${slug}`)
+  async getVehicleBySlug(slug: string, locale?: string): Promise<Vehicle & { brandRelation?: { logo: string } | null }> {
+    const response = await fetchWithLocale(`/api/vehicles/${slug}`, undefined, locale)
     if (!response.ok) {
       throw new Error('Véhicule non trouvé')
     }
@@ -92,10 +101,16 @@ class VehicleService {
       pricePerMonth: formData.pricePerMonth ? parseFloat(formData.pricePerMonth) : null,
       seats: parseInt(formData.seats),
       doors: parseInt(formData.doors),
+      translations: formData.translations.filter(t => t.bio || t.features.length > 0),
     }
   }
 
-  transformVehicleToFormData(vehicle: Vehicle): VehicleFormData {
+  transformVehicleToFormData(vehicle: Vehicle & { translations?: Array<{ locale: string; bio: string | null; features: string[] }> }): VehicleFormData {
+    // Récupérer les traductions existantes ou créer des traductions vides
+    const existingTranslations = vehicle.translations || []
+    const enTranslation = existingTranslations.find(t => t.locale === 'en') || { locale: 'en' as const, bio: '', features: [] }
+    const nlTranslation = existingTranslations.find(t => t.locale === 'nl') || { locale: 'nl' as const, bio: '', features: [] }
+
     return {
       brand: vehicle.brand,
       model: vehicle.model,
@@ -112,6 +127,18 @@ class VehicleService {
       bio: vehicle.bio || '',
       features: vehicle.features || [],
       isAvailable: vehicle.isAvailable,
+      translations: [
+        {
+          locale: 'en',
+          bio: enTranslation.bio || '',
+          features: enTranslation.features || [],
+        },
+        {
+          locale: 'nl',
+          bio: nlTranslation.bio || '',
+          features: nlTranslation.features || [],
+        },
+      ],
     }
   }
 
@@ -122,7 +149,7 @@ class VehicleService {
     transmission?: string
     startDate?: string
     endDate?: string
-  }): Promise<Vehicle[]> {
+  }, locale?: string): Promise<Vehicle[]> {
     const params = new URLSearchParams()
     if (filters?.isAvailable !== undefined) {
       params.append('isAvailable', String(filters.isAvailable))
@@ -146,7 +173,7 @@ class VehicleService {
     const queryString = params.toString()
     const url = `/api/vehicles${queryString ? `?${queryString}` : ''}`
 
-    const response = await fetch(url)
+    const response = await fetchWithLocale(url, undefined, locale)
 
     if (!response.ok) {
       let errorMessage = 'Erreur lors de la récupération des véhicules'
@@ -165,6 +192,20 @@ class VehicleService {
     }
 
     return response.json()
+  }
+
+  async getVehiclePrice(slug: string, startDate: string, endDate: string): Promise<{ pricePerDay: number; totalPrice: number; days: number }> {
+    const response = await fetch(`/api/vehicles/${slug}/price?startDate=${startDate}&endDate=${endDate}`)
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData.error || 'Erreur lors de la récupération du prix')
+    }
+    const data = await response.json()
+    return {
+      pricePerDay: data.pricePerDay,
+      totalPrice: data.totalPrice,
+      days: data.days,
+    }
   }
 
   async getAdminVehicles(): Promise<Vehicle[]> {

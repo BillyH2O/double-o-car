@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Car } from "@/types"
+import { useTranslations } from "next-intl"
 
 interface VehicleCardProps {
   car: Car
@@ -9,6 +10,8 @@ interface VehicleCardProps {
 }
 
 export default function VehicleCard({ car, onClick }: VehicleCardProps) {
+  const t = useTranslations("vehicle")
+  
   return (
     <div
       className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
@@ -56,7 +59,7 @@ export default function VehicleCard({ car, onClick }: VehicleCardProps) {
         </div>
         <div className="bg-[#003CF075] px-4 sm:px-6 py-1.5 sm:py-2 rounded-[20px]">
           <span className="text-black font-montserrat font-semibold font-weight-600 text-base sm:text-lg">{car.pricePerDay}€</span>
-          <span className="text-black font-montserrat font-regular font-weight-400 text-xs sm:text-sm">/Jour</span>
+          <span className="text-black font-montserrat font-regular font-weight-400 text-xs sm:text-sm">{t("perDay")}</span>
         </div>
       </div>
     </div>

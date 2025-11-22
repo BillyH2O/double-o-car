@@ -16,8 +16,10 @@ import { VehicleDescription } from "@/components/vehicles/detail/VehicleDescript
 import { VehicleFeatures } from "@/components/vehicles/detail/VehicleFeatures";
 import { VehicleDetailSidebar } from "@/components/vehicles/detail/VehicleDetailSidebar";
 import { VehicleErrorState } from "@/components/vehicles/detail/VehicleErrorState";
+import { useTranslations } from "next-intl";
 
 function VehiculeDetailPageContent() {
+  const t = useTranslations("vehicle");
   const params = useParams();
   const searchParams = useSearchParams();
   const slug = params?.slug as string;
@@ -41,7 +43,7 @@ function VehiculeDetailPageContent() {
   }
 
   if (error || !vehicle || !car) {
-    return <VehicleErrorState error={error || 'Véhicule non trouvé'} />;
+    return <VehicleErrorState error={error || t("vehicleNotFound")} />;
   }
 
   return (
@@ -66,13 +68,13 @@ function VehiculeDetailPageContent() {
               <VehicleDetailTitle vehicle={vehicle} />
               <VehicleImage vehicle={vehicle} />
 
+              <VehicleDescription vehicle={vehicle} />
+              <VehicleFeatures vehicle={vehicle} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <VehicleCharacteristics vehicle={vehicle} car={car} />
                 <VehiclePricing vehicle={vehicle} car={car} />
               </div>
-
-              <VehicleDescription vehicle={vehicle} />
-              <VehicleFeatures vehicle={vehicle} />
+              
             </main>
           </div>
         </div>

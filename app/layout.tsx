@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { HtmlLangUpdater } from "@/components/layout/HtmlLangUpdater";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -12,24 +13,26 @@ export const metadata: Metadata = {
   title: "Double-O Car - Location de voitures",
   description: "Louez votre voiture en toute simplicité",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="fr">
       <body
         className={`${montserrat.variable} font-sans antialiased`}
       >
+        <HtmlLangUpdater />
         {children}
       </body>
     </html>
   );
 }
+

@@ -77,6 +77,7 @@ model Vehicle {
   // Relations
   bookings        Booking[]
   availability    VehicleAvailability[]
+  translations    VehicleTranslation[]
   
   @@index([brandId])
   @@map("vehicles")
@@ -95,17 +96,35 @@ enum Transmission {
   AUTOMATIC
 }
 
-// Modèle pour gérer les périodes de disponibilité spécifiques
-model VehicleAvailability {
+// Modèle pour les traductions des véhicules
+model VehicleTranslation {
   id          String   @id @default(cuid())
   vehicleId   String
   vehicle     Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
-  startDate   DateTime
-  endDate     DateTime
-  isAvailable Boolean  @default(true) // false si le véhicule n'est pas disponible pendant cette période
-  reason      String?  // Raison de l'indisponibilité (ex: "Maintenance", "Réservé")
+  locale      String   // 'fr', 'en', 'nl'
+  bio         String?  @db.Text // Description traduite
+  features    String[] // Tableau de caractéristiques traduites (ex: ["GPS", "Air Conditioning"])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  
+  @@unique([vehicleId, locale]) // Un seul enregistrement par véhicule/langue
+  @@index([vehicleId])
+  @@index([locale])
+  @@map("vehicle_translations")
+}
+
+// Modèle pour gérer les périodes de disponibilité spécifiques
+model VehicleAvailability {
+  id              String   @id @default(cuid())
+  vehicleId       String
+  vehicle         Vehicle  @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  startDate       DateTime
+  endDate         DateTime
+  isAvailable     Boolean  @default(true) // false si le véhicule n'est pas disponible pendant cette période
+  reason          String?  // Raison de l'indisponibilité (ex: "Maintenance", "Réservé")
+  isFormalBooking Boolean  @default(false) // true = réservation présentielle (compte dans les stats), false = véhicule inactif (ne compte pas)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
   
   @@index([vehicleId])
   @@index([startDate, endDate])

@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { useCheckout } from '@/hooks/useCheckout'
+import { useTranslations } from 'next-intl'
 
 type Props = {
   vehicleId: string
@@ -10,7 +11,6 @@ type Props = {
   pickupLocation?: string
   returnLocation?: string
   className?: string
-  label?: string
 }
 
 export default function CheckoutButton({ 
@@ -20,10 +20,9 @@ export default function CheckoutButton({
   pickupLocation,
   returnLocation,
   className, 
-  label = 'Réserver ce véhicule' 
 }: Props) {
   const { startCheckout, loading } = useCheckout()
-
+  const t = useTranslations("checkout")
   return (
     <button
       onClick={() => {
@@ -32,11 +31,11 @@ export default function CheckoutButton({
       }}
       disabled={loading}
       className={cn(
-        'w-full bg-[#003CF0] text-white font-montserrat font-semibold text-base sm:text-lg py-3.5 sm:py-4 rounded-full hover:bg-[#0031c0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+        'w-full bg-[#003CF0] text-white font-montserrat font-semibold text-base sm:text-lg py-3.5 sm:py-4 rounded-full hover:bg-[#0031c0] transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:cursor-pointer',
         className
       )}
     >
-      {loading ? 'Redirection...' : label}
+      {loading ? t("redirecting") : t("checkoutButton")}
     </button>
   )
 }
