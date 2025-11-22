@@ -1,18 +1,17 @@
 "use client";
 
 import { navigateMonth } from "@/lib/utils/calendarUtils"
-import { useTranslations } from "next-intl"
-import { getMonthName } from "@/lib/utils/calendarTranslations"
+import { getMonthNameStatic } from "@/lib/utils/calendarTranslations"
 
 interface CalendarControlsProps {
   currentMonth: Date
   compact?: boolean
+  locale?: 'fr' | 'en' | 'nl'
   onMonthChange: (month: Date) => void
 }
 
-export function CalendarControls({ currentMonth, compact, onMonthChange }: CalendarControlsProps) {
-  const t = useTranslations("calendar")
-  const monthName = getMonthName(currentMonth.getMonth(), t)
+export function CalendarControls({ currentMonth, compact, locale = 'fr', onMonthChange }: CalendarControlsProps) {
+  const monthName = getMonthNameStatic(currentMonth.getMonth(), locale)
 
   return (
     <div className="flex items-center justify-between gap-2">
@@ -22,10 +21,9 @@ export function CalendarControls({ currentMonth, compact, onMonthChange }: Calen
           ? "bg-white/20 hover:bg-white/30 text-white p-2 rounded text-xs font-montserrat shrink-0"
           : "bg-white/20 hover:bg-white/30 text-white px-3 sm:px-4 py-2 rounded-lg font-montserrat shrink-0"
         }
-        aria-label={t("previousMonth")}
+        aria-label="Previous month"
       >
-        <span className="hidden sm:inline">←</span>
-        <span className="sm:hidden">←</span>
+        ←
       </button>
       <h2 className={compact 
         ? "text-white text-sm font-montserrat font-semibold text-center flex-1"
@@ -39,10 +37,9 @@ export function CalendarControls({ currentMonth, compact, onMonthChange }: Calen
           ? "bg-white/20 hover:bg-white/30 text-white p-2 rounded text-xs font-montserrat shrink-0"
           : "bg-white/20 hover:bg-white/30 text-white px-3 sm:px-4 py-2 rounded-lg font-montserrat shrink-0"
         }
-        aria-label={t("nextMonth")}
+        aria-label="Next month"
       >
-        <span className="hidden sm:inline">→</span>
-        <span className="sm:hidden">→</span>
+        →
       </button>
     </div>
   )

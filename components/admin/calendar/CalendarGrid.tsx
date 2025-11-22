@@ -3,20 +3,19 @@
 import { getDaysInMonth } from "@/lib/utils/calendarUtils"
 import { getDayStatus } from "@/lib/utils/calendarStatusUtils"
 import { Booking, Availability } from "@/lib/services/vehicleAvailabilityService"
-import { useTranslations } from "next-intl"
-import { getDayNames } from "@/lib/utils/calendarTranslations"
+import { getDayNamesStatic } from "@/lib/utils/calendarTranslations"
 
 interface CalendarGridProps {
   currentMonth: Date
   bookings: Booking[]
   availability: Availability[]
   compact?: boolean
+  locale?: 'fr' | 'en' | 'nl'
 }
 
-export function CalendarGrid({ currentMonth, bookings, availability, compact }: CalendarGridProps) {
+export function CalendarGrid({ currentMonth, bookings, availability, compact, locale = 'fr' }: CalendarGridProps) {
   const days = getDaysInMonth(currentMonth)
-  const t = useTranslations("calendar")
-  const dayNames = getDayNames(t)
+  const dayNames = getDayNamesStatic(locale)
 
   return (
     <div className={compact 

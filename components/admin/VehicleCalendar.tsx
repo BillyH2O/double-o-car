@@ -10,6 +10,7 @@ import { CalendarLegend } from "./calendar/CalendarLegend"
 import { CalendarGrid } from "./calendar/CalendarGrid"
 import { AvailabilityPeriodsList } from "./calendar/AvailabilityPeriodsList"
 import { AddAvailabilityModal } from "./calendar/AddAvailabilityModal"
+import { useLocale } from "next-intl"
 
 interface VehicleCalendarProps {
   vehicle: Vehicle
@@ -17,6 +18,7 @@ interface VehicleCalendarProps {
   showStats?: boolean // Afficher les statistiques (admin uniquement)
   showAddButton?: boolean // Afficher le bouton d'ajout de période (admin uniquement)
   showPeriodsList?: boolean // Afficher la liste des périodes (admin uniquement)
+  locale?: 'fr' | 'en' | 'nl' // Locale pour les traductions (optionnel, utilise useLocale si disponible)
 }
 
 export default function VehicleCalendar({ 
@@ -24,8 +26,19 @@ export default function VehicleCalendar({
   compact = false,
   showStats = true,
   showAddButton = true,
-  showPeriodsList = true
+  showPeriodsList = true,
+  locale
 }: VehicleCalendarProps) {
+  // Essayer d'utiliser useLocale si disponible, sinon utiliser la locale fournie ou 'fr' par défaut
+  let currentLocale: 'fr' | 'en' | 'nl' = locale || 'fr'
+  try {
+    const detectedLocale = useLocale()
+    if (detectedLocale === 'fr' || detectedLocale === 'en' || detectedLocale === 'nl') {
+      currentLocale = detectedLocale
+    }
+  } catch {
+    // useLocale n'est pas disponible, utiliser la valeur par défaut
+  }
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [showAddModal, setShowAddModal] = useState(false)
   const statsRefetchRef = useRef<(() => Promise<void>) | null>(null)
@@ -82,16 +95,18 @@ export default function VehicleCalendar({
       <CalendarControls
         currentMonth={currentMonth}
         compact={compact}
+        locale={currentLocale}
         onMonthChange={setCurrentMonth}
       />
 
-      <CalendarLegend compact={compact} />
+      <CalendarLegend compact={compact} locale={currentLocale} />
 
       <CalendarGrid
         currentMonth={currentMonth}
         bookings={bookings}
         availability={availability}
         compact={compact}
+        locale={currentLocale}
       />
 
       {showPeriodsList && (

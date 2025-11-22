@@ -52,10 +52,10 @@ export default function NotFound() {
               </Button>
             </Link>
           </div>
+        </div>
       </div>
-    </div>
     <Footer useStaticTranslations />
-  </div>
+    </div>
   )
 }
 
