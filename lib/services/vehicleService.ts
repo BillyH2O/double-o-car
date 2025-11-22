@@ -54,7 +54,7 @@ class VehicleService {
     return response.json()
   }
 
-  async getVehicleBySlug(slug: string, locale?: string): Promise<Vehicle & { brandRelation?: { logo: string } | null }> {
+  async getVehicleBySlug(slug: string, locale: string): Promise<Vehicle & { brandRelation?: { logo: string } | null }> {
     const response = await fetchWithLocale(`/api/vehicles/${slug}`, undefined, locale)
     if (!response.ok) {
       throw new Error('Véhicule non trouvé')
@@ -142,14 +142,14 @@ class VehicleService {
     }
   }
 
-  async getVehicles(filters?: {
+  async getVehicles(locale: string, filters?: {
     isAvailable?: boolean
     brand?: string
     fuelType?: string
     transmission?: string
     startDate?: string
     endDate?: string
-  }, locale?: string): Promise<Vehicle[]> {
+  }): Promise<Vehicle[]> {
     const params = new URLSearchParams()
     if (filters?.isAvailable !== undefined) {
       params.append('isAvailable', String(filters.isAvailable))

@@ -25,6 +25,13 @@ export function middleware(request: NextRequest) {
     })
   }
 
+  // Redirection explicite de la racine vers /fr
+  if (pathname === '/') {
+    const url = request.nextUrl.clone()
+    url.pathname = `/fr`
+    return NextResponse.redirect(url)
+  }
+
   // Ajouter le pathname aux headers pour le layout
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set("x-pathname", pathname)

@@ -1,6 +1,7 @@
 import { Vehicle, Car } from "@/types"
 import { CalendarDays, Fuel, Gauge } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { translateTransmission } from "@/lib/utils/transmissionTranslations"
 
 interface VehicleCharacteristicsProps {
   vehicle: Vehicle
@@ -9,6 +10,7 @@ interface VehicleCharacteristicsProps {
 
 export function VehicleCharacteristics({ vehicle, car }: VehicleCharacteristicsProps) {
   const t = useTranslations("vehicle")
+  const tFilters = useTranslations("vehicleFilters")
   
   return (
     <div className="bg-black/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6">
@@ -20,7 +22,7 @@ export function VehicleCharacteristics({ vehicle, car }: VehicleCharacteristicsP
         </div>
         <div className="flex items-center gap-3">
         <Gauge />
-          <span className="text-white/80 font-montserrat">{t("transmission")}: {car.transmission}</span>
+          <span className="text-white/80 font-montserrat">{t("transmission")}: {translateTransmission(car.transmission, tFilters)}</span>
         </div>
         <div className="flex items-center gap-3">
         <Fuel />

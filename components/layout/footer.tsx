@@ -7,6 +7,12 @@ import { useTranslations } from "next-intl";
 import { Component, ReactNode } from "react";
 import { getNamespaceTranslations } from "@/lib/utils/messageLoader";
 
+// Helper pour extraire une string depuis les traductions
+function getString(translations: Record<string, unknown>, key: string): string {
+  const value = translations[key];
+  return typeof value === 'string' ? value : '';
+}
+
 // Error Boundary pour gérer l'absence de contexte NextIntl
 class TranslationErrorBoundary extends Component<
   { children: ReactNode; fallback: ReactNode },
@@ -69,13 +75,13 @@ function FooterWithStaticTranslations() {
   const footerTranslations = getNamespaceTranslations(locale, 'footer');
   
   return <FooterContent locale={locale} t={{
-    vehicles: footerTranslations.vehicles || '',
-    about: footerTranslations.about || '',
-    contact: footerTranslations.contact || '',
-    legal: footerTranslations.legal || '',
-    privacy: footerTranslations.privacy || '',
-    developedBy: footerTranslations.developedBy || '',
-    studio: footerTranslations.studio || '',
+    vehicles: getString(footerTranslations, 'vehicles'),
+    about: getString(footerTranslations, 'about'),
+    contact: getString(footerTranslations, 'contact'),
+    legal: getString(footerTranslations, 'legal'),
+    privacy: getString(footerTranslations, 'privacy'),
+    developedBy: getString(footerTranslations, 'developedBy'),
+    studio: getString(footerTranslations, 'studio'),
   }} />;
 }
 
@@ -145,13 +151,13 @@ export default function Footer({ useStaticTranslations }: { useStaticTranslation
   if (isAdminPath) {
     const footerTranslations = getNamespaceTranslations('fr', 'footer');
     return <FooterContent locale="fr" t={{
-      vehicles: footerTranslations.vehicles || '',
-      about: footerTranslations.about || '',
-      contact: footerTranslations.contact || '',
-      legal: footerTranslations.legal || '',
-      privacy: footerTranslations.privacy || '',
-      developedBy: footerTranslations.developedBy || '',
-      studio: footerTranslations.studio || '',
+      vehicles: getString(footerTranslations, 'vehicles'),
+      about: getString(footerTranslations, 'about'),
+      contact: getString(footerTranslations, 'contact'),
+      legal: getString(footerTranslations, 'legal'),
+      privacy: getString(footerTranslations, 'privacy'),
+      developedBy: getString(footerTranslations, 'developedBy'),
+      studio: getString(footerTranslations, 'studio'),
     }} />;
   }
   
@@ -159,13 +165,13 @@ export default function Footer({ useStaticTranslations }: { useStaticTranslation
   if (!hasLocaleInPath) {
     const footerTranslations = getNamespaceTranslations('fr', 'footer');
     return <FooterContent locale="fr" t={{
-      vehicles: footerTranslations.vehicles || '',
-      about: footerTranslations.about || '',
-      contact: footerTranslations.contact || '',
-      legal: footerTranslations.legal || '',
-      privacy: footerTranslations.privacy || '',
-      developedBy: footerTranslations.developedBy || '',
-      studio: footerTranslations.studio || '',
+      vehicles: getString(footerTranslations, 'vehicles'),
+      about: getString(footerTranslations, 'about'),
+      contact: getString(footerTranslations, 'contact'),
+      legal: getString(footerTranslations, 'legal'),
+      privacy: getString(footerTranslations, 'privacy'),
+      developedBy: getString(footerTranslations, 'developedBy'),
+      studio: getString(footerTranslations, 'studio'),
     }} />;
   }
   

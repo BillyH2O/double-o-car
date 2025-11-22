@@ -25,7 +25,7 @@ export async function GET(
         bookings: {
           where: {
             status: {
-              in: ['PENDING', 'CONFIRMED', 'ACTIVE'],
+              in: ['CONFIRMED', 'ACTIVE', 'COMPLETED'], // Exclure PENDING et CANCELLED
             },
           },
         },

@@ -17,7 +17,6 @@ type Locale = 'fr' | 'en' | 'nl';
 
 type Messages = typeof frMessages;
 type NamespaceMessages = Messages[keyof Messages];
-type NestedValue = string | Record<string, NestedValue>;
 
 /**
  * Obtient une traduction depuis les fichiers de messages
@@ -41,11 +40,11 @@ export function getTranslation(
     
     // Gérer les clés imbriquées (ex: 'section1.title')
     const keys = key.split('.');
-    let value: NestedValue = namespaceMessages as NestedValue;
+    let value: unknown = namespaceMessages;
     
     for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k];
+      if (value && typeof value === 'object' && value !== null && k in value) {
+        value = (value as Record<string, unknown>)[k];
       } else {
         return '';
       }

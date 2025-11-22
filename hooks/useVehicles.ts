@@ -14,14 +14,14 @@ export function useVehicles(options: UseVehiclesOptions = {}): UseVehiclesReturn
       setLoading(true)
       setError(null)
 
-      const data = await vehicleService.getVehicles({
+      const data = await vehicleService.getVehicles(locale, {
         isAvailable: options.isAvailable,
         brand: options.brand,
         fuelType: options.fuelType,
         transmission: options.transmission,
         startDate: options.startDate,
         endDate: options.endDate,
-      }, locale)
+      })
 
       setVehicles(data)
     } catch (err) {

@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { Car } from "@/types"
 import { useTranslations } from "next-intl"
+import { translateTransmission } from "@/lib/utils/transmissionTranslations"
 
 interface VehicleCardProps {
   car: Car
@@ -11,6 +12,7 @@ interface VehicleCardProps {
 
 export default function VehicleCard({ car, onClick }: VehicleCardProps) {
   const t = useTranslations("vehicle")
+  const tFilters = useTranslations("vehicleFilters")
   
   return (
     <div
@@ -50,7 +52,7 @@ export default function VehicleCard({ car, onClick }: VehicleCardProps) {
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2 bg-[#D9D9D980] rounded-[20px] px-3 sm:px-4 py-1.5 sm:py-2">
             <Image src="/pod.png" alt="Transmission" width={20} height={20} className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span className="text-[#000000] font-montserrat">{car.transmission}</span>
+            <span className="text-[#000000] font-montserrat">{translateTransmission(car.transmission, tFilters)}</span>
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2 bg-[#D9D9D980] rounded-[20px] px-3 sm:px-4 py-1.5 sm:py-2">
             <Image src="/essence.png" alt="Fuel" width={20} height={20} className="w-4 h-4 sm:w-5 sm:h-5" />

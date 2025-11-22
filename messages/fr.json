@@ -40,24 +40,24 @@
   "whyUs": {
     "title": "Pourquoi nous choisir",
     "description": "Nous sommes une entreprise de location de voitures de qualité, nous avons une équipe dédiée à vous offrir une expérience de location exceptionnelle.",
-    "items": [
-      {
-        "number": "500+",
+      "items": [
+        {
+          "number": "500+",
         "label": "Clients accompagnés"
-      },
-      {
-        "number": "150+",
+        },
+        {
+          "number": "150+",
         "label": "Voitures disponibles"
-      },
-      {
-        "number": "4.8/5",
+        },   
+        {
+          "number": "4.8/5",
         "label": "Note moyenne"
-      },
-      {
-        "number": "24/7",
+        },
+        {
+          "number": "24/7",
         "label": "Service disponible"
-      }
-    ]
+        }
+      ]
   },
   "testimonials": {
     "title": "Avis des clients",

@@ -1,10 +1,25 @@
 "use client"
 
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect } from 'react'
 import Footer from "@/components/layout/footer"
 
 export default function CheckoutCancelPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const sessionId = searchParams.get('session_id')
+
+  useEffect(() => {
+    // Annuler automatiquement la réservation PENDING si on a un session_id
+    if (sessionId) {
+      fetch(`/api/checkout/cancel?session_id=${encodeURIComponent(sessionId)}`, {
+        method: 'GET',
+      }).catch((error) => {
+        console.error('Erreur lors de l\'annulation de la réservation:', error)
+        // Ne pas bloquer l'affichage de la page si l'annulation échoue
+      })
+    }
+  }, [sessionId])
 
   return (
     <div className="min-h-screen bg-linear-to-b from-[#001141] via-[#001a5c] to-black flex items-center justify-center p-6">
