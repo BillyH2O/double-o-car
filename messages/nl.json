@@ -61,7 +61,21 @@
   },
   "testimonials": {
     "title": "Klantbeoordelingen",
-    "description": "Wat onze klanten zeiden"
+    "description": "Wat onze klanten zeiden",
+    "items": [
+      {
+        "name": "Nadia",
+        "comment": "Goede ervaring! Aangenaam team en recent voertuig. Ik kom zeker terug."
+      },
+      {
+        "name": "Stephanie",
+        "comment": "Snelle en professionele service! Ik heb mijn auto zonder wachten opgehaald en alles ging perfect. Ik beveel dit verhuurbedrijf ten zeerste aan vanwege het gemak en de ontvangst"
+      },
+      {
+        "name": "Karim",
+        "comment": "Uitstekende service! Onberispelijke auto en gastvrij personeel. Ik beveel het ten zeerste aan voor een snelle verhuur"
+      }
+    ]
   },
   "faq": {
     "title": "Veelgestelde vragen",

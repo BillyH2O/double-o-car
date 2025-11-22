@@ -61,7 +61,21 @@
   },
   "testimonials": {
     "title": "Avis des clients",
-    "description": "Nos clients nous ont dit"
+    "description": "Nos clients nous ont dit",
+    "items": [
+      {
+        "name": "Nadia",
+        "comment": "Bonne expérience ! Équipe agréable et véhicule récent. Je reviendrai sans aucun doute."
+      },
+      {
+        "name": "Stephanie",
+        "comment": "Service rapide et professionnel ! J'ai récupéré ma voiture sans attendre et tout s'est passé parfaitement. Je recommande vivement cette agence de location pour sa facilité et son accueil"
+      },
+      {
+        "name": "Karim",
+        "comment": "Excellent service ! Voiture impeccable et personnel accueillant. Je recommande fortement pour une location rapide"
+      }
+    ]
   },
   "faq": {
     "title": "Questions fréquentes",

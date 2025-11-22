@@ -61,7 +61,21 @@
   },
   "testimonials": {
     "title": "Customer Reviews",
-    "description": "What our customers said"
+    "description": "What our customers said",
+    "items": [
+      {
+        "name": "Nadia",
+        "comment": "Good experience! Pleasant team and recent vehicle. I will definitely come back."
+      },
+      {
+        "name": "Stephanie",
+        "comment": "Fast and professional service! I picked up my car without waiting and everything went perfectly. I highly recommend this rental agency for its ease and welcome"
+      },
+      {
+        "name": "Karim",
+        "comment": "Excellent service! Impeccable car and welcoming staff. I highly recommend for a quick rental"
+      }
+    ]
   },
   "faq": {
     "title": "Frequently asked questions",

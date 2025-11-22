@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl';
 import Footer from "@/components/layout/footer";
 import Simplicity from "@/components/features/landing/about-us/Simplicity";
 import { TestimonialsSection } from "@/components/features/landing/testimonies/testimonials-with-marquee";
-import { reviews } from "@/data/reviews";
 import { Navbar } from "@/components/layout/navbar";
 import FAQsThree from "@/components/features/landing/faq/FAQSection";
 import VehicleBrands from "@/components/vehicles/VehicleBrands";
@@ -39,14 +38,29 @@ export default function Home() {
           title={t('testimonials.title')} 
           description={t('testimonials.description')} 
           className="dark" 
-          testimonials={reviews.map((review) => ({
-            author: {
-              name: review.name,
-              handle: review.name,
-              avatar: "/avatar.jpg"
+          testimonials={[
+            {
+              author: {
+                name: t('testimonials.items.0.name'),
+                avatar: "/avatar.jpg"
+              },
+              text: t('testimonials.items.0.comment')
             },
-            text: review.comment
-          }))} 
+            {
+              author: {
+                name: t('testimonials.items.1.name'),
+                avatar: "/avatar.jpg"
+              },
+              text: t('testimonials.items.1.comment')
+            },
+            {
+              author: {
+                name: t('testimonials.items.2.name'),
+                avatar: "/avatar.jpg"
+              },
+              text: t('testimonials.items.2.comment')
+            }
+          ]} 
         />
       </section>
 
