@@ -6,10 +6,10 @@ import Simplicity from "@/components/features/landing/about-us/Simplicity";
 import { TestimonialsSection } from "@/components/features/landing/testimonies/testimonials-with-marquee";
 import { Navbar } from "@/components/layout/navbar";
 import FAQsThree from "@/components/features/landing/faq/FAQSection";
-import VehicleBrands from "@/components/vehicles/VehicleBrands";
 import PourquoiNous from "@/components/features/landing/why-us/PourquoiNous";
 import HeroSection3 from "@/components/features/hero/HeroSection3";
 import { CTASection } from "@/components/features/landing/cta/cta-with-rectangle";
+import VehicleBrands from '@/components/vehicles/VehicleBrands';
 
 export default function Home() {
   const t = useTranslations();
@@ -19,7 +19,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center justify-center gap-16 sm:gap-24 md:gap-32">
+      <div className="flex flex-col items-center justify-center gap-24 sm:gap-64 md:gap-96">
         
         <HeroSection3 
           backgroundImage="/hero1.png" 
@@ -27,7 +27,7 @@ export default function Home() {
           description={t('hero.description')} 
           darkEffect={true}
         />
-        <div className="hidden md:block"><VehicleBrands /></div>
+        <VehicleBrands />
       </div>
 
       <div className="dark mt-16 sm:mt-20 md:mt-24 w-full mx-auto flex flex-col gap-16 sm:gap-20 md:gap-24">

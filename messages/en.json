@@ -208,6 +208,11 @@
     "phone": "Phone",
     "message": "Message",
     "send": "Send",
+    "sending": "Sending...",
+    "lastNamePlaceholder": "Your last name",
+    "firstNamePlaceholder": "Your first name",
+    "emailPlaceholder": "your@email.com",
+    "messagePlaceholder": "Your message",
     "success": "Your message has been sent successfully. Thank you, we will respond quickly.",
     "error": "An error occurred while sending the message."
   },

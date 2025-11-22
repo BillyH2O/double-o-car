@@ -208,6 +208,11 @@
     "phone": "Telefoon",
     "message": "Bericht",
     "send": "Verzenden",
+    "sending": "Verzenden...",
+    "lastNamePlaceholder": "Uw achternaam",
+    "firstNamePlaceholder": "Uw voornaam",
+    "emailPlaceholder": "uw@email.com",
+    "messagePlaceholder": "Uw bericht",
     "success": "Uw bericht is succesvol verzonden. Bedankt, we zullen snel reageren.",
     "error": "Er is een fout opgetreden bij het verzenden van het bericht."
   },
