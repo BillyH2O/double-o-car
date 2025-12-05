@@ -18,7 +18,7 @@ const HeroSection3 = ({
 }: HeroSectionProps) => {
   return (
     <section 
-      className="relative w-full bg-cover bg-center cn max-h-[400px] sm:max-h-[500px] md:max-h-[600px] pb-28 sm:pb-16 md:pb-36"
+      className="relative w-full bg-cover bg-center cn max-h-[350px] sm:max-h-[500px] md:max-h-[600px] pb-28 sm:pb-16 md:pb-36"
       style={{ backgroundImage: `url('${backgroundImage}')` }}  
     >
       
