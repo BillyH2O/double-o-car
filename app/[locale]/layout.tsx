@@ -13,6 +13,25 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
+  openGraph: {
+    title: "Double-O Car - Location de voitures",
+    description: "Louez votre voiture en toute simplicité",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Double-O Car Logo",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Double-O Car - Location de voitures",
+    description: "Louez votre voiture en toute simplicité",
+    images: ["/logo.png"],
+  },
 };
 
 export function generateStaticParams() {

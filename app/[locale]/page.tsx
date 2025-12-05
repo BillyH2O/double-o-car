@@ -19,7 +19,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center justify-center gap-24 sm:gap-64 md:gap-96">
+      <div className="flex flex-col items-center justify-center gap-24 xl:gap-96">
         
         <HeroSection3 
           backgroundImage="/hero1.png" 
