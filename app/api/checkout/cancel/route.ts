@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { stripe } from '@/lib/stripe'
+import { stripe, isStripeConfigured } from '@/lib/stripe'
 
 /**
  * Route pour annuler une réservation PENDING lorsqu'un utilisateur annule le checkout Stripe
@@ -18,6 +18,11 @@ export async function POST(req: NextRequest) {
 
     // Si on a un sessionId, récupérer la réservation via la session Stripe
     if (sessionId) {
+      // Vérifier que Stripe est configuré si on utilise sessionId
+      if (!isStripeConfigured() || !stripe) {
+        return new Response('Stripe is not configured', { status: 503 })
+      }
+      
       try {
         const session = await stripe.checkout.sessions.retrieve(sessionId)
         const bookingIdFromSession = (session.metadata as Record<string, string> | null)?.bookingId
@@ -82,6 +87,11 @@ export async function GET(req: NextRequest) {
 
     // Si on a un sessionId, récupérer la réservation via la session Stripe
     if (sessionId) {
+      // Vérifier que Stripe est configuré si on utilise sessionId
+      if (!isStripeConfigured() || !stripe) {
+        return new Response('Stripe is not configured', { status: 503 })
+      }
+      
       try {
         const session = await stripe.checkout.sessions.retrieve(sessionId)
         const bookingIdFromSession = (session.metadata as Record<string, string> | null)?.bookingId

@@ -61,3 +61,7 @@ npm run db:migrate
 - Gestion de publication (brouillon/publié)
 - Slug pour URLs SEO-friendly
 
+
+
+
+

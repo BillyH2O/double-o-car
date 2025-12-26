@@ -1,10 +1,15 @@
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { stripe } from '@/lib/stripe'
+import { stripe, isStripeConfigured } from '@/lib/stripe'
 import type Stripe from 'stripe'
 
 export async function GET(req: NextRequest) {
   try {
+    // Vérifier que Stripe est configuré
+    if (!isStripeConfigured() || !stripe) {
+      return new Response('Stripe is not configured', { status: 503 })
+    }
+
     const { searchParams } = new URL(req.url)
     const sessionId = searchParams.get('session_id')
     if (!sessionId) {

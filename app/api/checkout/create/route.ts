@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { stripe } from '@/lib/stripe'
+import { stripe, isStripeConfigured } from '@/lib/stripe'
 
 function getBaseUrl() {
   // En production, utiliser l'URL du site déployé
@@ -69,10 +69,6 @@ export async function POST(req: NextRequest) {
     const pricePerDay = Number(vehicle.pricePerDay)
     const totalPrice = pricePerDay * days
 
-    const baseUrl = getBaseUrl()
-    const success = successUrl || `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`
-    const cancel = cancelUrl || `${baseUrl}/checkout/cancel`
-
     // Créer une réservation en attente dans la base de données
     const booking = await prisma.booking.create({
       data: {
@@ -85,6 +81,39 @@ export async function POST(req: NextRequest) {
         dropoffLocation: returnLocation || undefined,
       },
     })
+
+    // Si Stripe n'est pas configuré, rediriger vers WhatsApp
+    if (!isStripeConfigured() || !stripe) {
+      const whatsappPhone = process.env.WHATSAPP_PHONE_NUMBER || process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER
+      
+      if (!whatsappPhone) {
+        return new Response('WhatsApp phone number not configured. Please set WHATSAPP_PHONE_NUMBER or NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER environment variable.', { status: 500 })
+      }
+
+      // Créer le message WhatsApp avec les détails de la réservation
+      // Utilisation de caractères ASCII uniquement pour éviter les problèmes d'encodage
+      const message = `Bonjour, je souhaite réserver le véhicule suivant :
+
+- Véhicule : ${vehicle.brand} ${vehicle.model} ${vehicle.year}
+- Du ${start.toLocaleDateString('fr-FR')} au ${end.toLocaleDateString('fr-FR')} (${days} jour${days > 1 ? 's' : ''})
+- Prix total : ${totalPrice.toFixed(2)} €
+${pickupLocation ? `- Lieu de prise en charge : ${pickupLocation}` : ''}
+${returnLocation ? `- Lieu de retour : ${returnLocation}` : ''}
+- Référence : ${booking.id}`
+
+      // Encoder le message pour l'URL
+      const encodedMessage = encodeURIComponent(message)
+      
+      // Créer le lien WhatsApp (format international sans +)
+      const phoneNumber = whatsappPhone.replace(/[^0-9]/g, '')
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+
+      return Response.json({ url: whatsappUrl, id: booking.id, type: 'whatsapp' })
+    }
+
+    const baseUrl = getBaseUrl()
+    const success = successUrl || `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`
+    const cancel = cancelUrl || `${baseUrl}/checkout/cancel`
 
     // Créer la session Stripe Checkout
     const session = await stripe.checkout.sessions.create({
@@ -149,4 +178,8 @@ export async function POST(req: NextRequest) {
     return new Response(`Server error: ${e instanceof Error ? e.message : 'Unknown error'}`, { status: 500 })
   }
 }
+
+
+
+
 

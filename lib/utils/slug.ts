@@ -24,3 +24,7 @@ export function generateSlug(brand: string, model: string, year: number, transmi
     .replace(/^-|-$/g, '') // Supprimer les tirets en début/fin
 }
 
+
+
+
+

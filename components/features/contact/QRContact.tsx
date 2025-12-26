@@ -34,3 +34,7 @@ const QRContact = ({
 export default QRContact
 
 
+
+
+
+

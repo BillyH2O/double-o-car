@@ -1,7 +1,6 @@
 "use client"
 
 import CompactBookingForm from '@/components/form/CompactBookingForm';
-import VehicleBrands from '@/components/vehicles/VehicleBrands';
 
 interface HeroSectionProps {
   backgroundImage: string;

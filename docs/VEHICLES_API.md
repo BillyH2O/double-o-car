@@ -109,3 +109,7 @@ function MyComponent() {
 4. **Maintenabilité**: Code propre et facile à maintenir
 5. **Testabilité**: Chaque partie peut être testée indépendamment
 
+
+
+
+

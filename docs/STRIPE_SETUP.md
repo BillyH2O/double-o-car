@@ -62,3 +62,7 @@ Pour une meilleure gestion des paiements, vous pouvez configurer des webhooks St
 3. Sélectionnez les événements : `checkout.session.completed`, `payment_intent.succeeded`
 4. Copiez le **Signing secret** dans `STRIPE_WEBHOOK_SECRET`
 
+
+
+
+
