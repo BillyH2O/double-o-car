@@ -71,11 +71,11 @@ export default function AboutPage() {
 
       {/* Notre Équipe */}
       <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-montserrat text-white mb-12 text-center">
             {t("section3.title")}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               <div className="w-20 h-20 bg-[#003CF0] rounded-full flex items-center justify-center mb-4 mx-auto">
                 <span className="text-white text-2xl font-bold font-montserrat">B</span>
@@ -93,7 +93,7 @@ export default function AboutPage() {
 
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               <div className="w-20 h-20 bg-[#003CF0] rounded-full flex items-center justify-center mb-4 mx-auto">
-                <span className="text-white text-2xl font-bold font-montserrat">M</span>
+                <span className="text-white text-2xl font-bold font-montserrat">A</span>
               </div>
               <h3 className="text-xl font-bold font-montserrat text-white text-center mb-2">
                 {t("section3.mohamed.name")}
@@ -103,6 +103,36 @@ export default function AboutPage() {
               </p>
               <p className="text-sm text-gray-400 text-center font-montserrat">
                 {t("section3.mohamed.description")}
+              </p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="w-20 h-20 bg-[#003CF0] rounded-full flex items-center justify-center mb-4 mx-auto">
+                <span className="text-white text-2xl font-bold font-montserrat">H</span>
+              </div>
+              <h3 className="text-xl font-bold font-montserrat text-white text-center mb-2">
+                {t("section3.hassan.name")}
+              </h3>
+              <p className="text-gray-300 text-center font-montserrat mb-3">
+                {t("section3.responsibleExploitation")}
+              </p>
+              <p className="text-sm text-gray-400 text-center font-montserrat">
+                {t("section3.hassan.description")}
+              </p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="w-20 h-20 bg-[#003CF0] rounded-full flex items-center justify-center mb-4 mx-auto">
+                <span className="text-white text-2xl font-bold font-montserrat">K</span>
+              </div>
+              <h3 className="text-xl font-bold font-montserrat text-white text-center mb-2">
+                {t("section3.khalid.name")}
+              </h3>
+              <p className="text-gray-300 text-center font-montserrat mb-3">
+                {t("section3.responsibleStaff")}
+              </p>
+              <p className="text-sm text-gray-400 text-center font-montserrat">
+                {t("section3.khalid.description")}
               </p>
             </div>
           </div>

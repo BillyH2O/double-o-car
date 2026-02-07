@@ -360,13 +360,23 @@
     "section3": {
       "title": "Ons Team",
       "cofounder": "Medeoprichter",
+      "responsibleExploitation": "Verantwoordelijke Exploitatie",
+      "responsibleStaff": "Verantwoordelijke Personeel",
       "brahim": {
         "name": "Brahim",
-        "description": "Medeoprichter van Double-O Car, Brahim ontwikkelt dit bedrijf al 1 jaar met passie en vastberadenheid om de beste huurervaring te bieden."
+        "description": "Oprichter van Double-O Car, Brahim ontwikkelt dit bedrijf al 1 jaar met passie en vastberadenheid om de beste huurervaring te bieden."
       },
       "mohamed": {
         "name": "Mohamed",
         "description": "Medeoprichter van Double-O Car, Mohamed ontwikkelt dit bedrijf al 1 jaar met passie en vastberadenheid om de beste huurervaring te bieden."
+      },
+      "hassan": {
+        "name": "Hassan",
+        "description": "Verantwoordelijke Exploitatie van Double-O Car, Hassan zorgt voor het operationele beheer en de soepele dagelijkse werking van ons wagenpark."
+      },
+      "khalid": {
+        "name": "Khalid",
+        "description": "Verantwoordelijke Personeel van Double-O Car, Khalid coördineert het team en zorgt voor uitzonderlijke klantenservice bij elke verhuur."
       }
     },
     "section4": {

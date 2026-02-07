@@ -341,7 +341,7 @@
     "heroAlt": "Notre équipe",
     "section1": {
       "title": "Notre Histoire",
-      "paragraph1": "Double-O Car est née d'une passion pour l'automobile et d'un désir de rendre la location de véhicules accessible à tous. Fondée en 2020, notre entreprise s'est rapidement imposée comme un acteur de référence dans le secteur de la location automobile.",
+      "paragraph1": "Double-O Car est née d'une passion pour l'automobile et d'un désir de rendre la location de véhicules accessible à tous. Fondée en Juin 2024, notre entreprise s'est rapidement imposée comme un acteur de référence dans le secteur de la location automobile.",
       "paragraph2": "Nous avons commencé avec une vision simple : offrir une expérience de location exceptionnelle, où chaque client se sent valorisé et où chaque véhicule est soigneusement sélectionné pour répondre aux besoins les plus exigeants.",
       "paragraph3": "Aujourd'hui, nous sommes fiers de proposer une flotte diversifiée de véhicules modernes, allant des citadines économiques aux berlines de luxe, en passant par les SUV spacieux. Notre engagement envers l'excellence et la satisfaction client reste au cœur de tout ce que nous faisons."
     },
@@ -360,13 +360,23 @@
     "section3": {
       "title": "Notre Équipe",
       "cofounder": "Cofondateur",
+      "responsibleExploitation": "Responsable Exploitation",
+      "responsibleStaff": "Responsable Staff",
       "brahim": {
         "name": "Brahim",
-        "description": "Cofondateur de Double-O Car, Brahim développe ce business depuis 1 an avec passion et détermination pour offrir la meilleure expérience de location."
+        "description": "Fondateur de Double-O Car, Brahim développe ce business depuis 1 an avec passion et détermination pour offrir la meilleure expérience de location."
       },
       "mohamed": {
-        "name": "Mohamed",
-        "description": "Cofondateur de Double-O Car, Mohamed développe ce business depuis 1 an avec passion et détermination pour offrir la meilleure expérience de location."
+        "name": "Aziz",
+        "description": "Cofondateur de Double-O Car, Aziz développe ce business depuis 1 an avec passion et détermination pour offrir la meilleure expérience de location."
+      },
+      "hassan": {
+        "name": "Hassan",
+        "description": "Responsable Exploitation de Double-O Car, Hassan assure la gestion opérationnelle et le bon fonctionnement quotidien de notre flotte de véhicules."
+      },
+      "khalid": {
+        "name": "Khalid",
+        "description": "Responsable Staff de Double-O Car, Khalid coordonne l'équipe et veille à offrir un service client d'exception à chaque location."
       }
     },
     "section4": {

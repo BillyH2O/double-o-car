@@ -360,13 +360,23 @@
     "section3": {
       "title": "Our Team",
       "cofounder": "Cofounder",
+      "responsibleExploitation": "Operations Manager",
+      "responsibleStaff": "Staff Manager",
       "brahim": {
         "name": "Brahim",
-        "description": "Cofounder of Double-O Car, Brahim has been developing this business for 1 year with passion and determination to offer the best rental experience."
+        "description": "Founder of Double-O Car, Brahim has been developing this business for 1 year with passion and determination to offer the best rental experience."
       },
       "mohamed": {
         "name": "Mohamed",
         "description": "Cofounder of Double-O Car, Mohamed has been developing this business for 1 year with passion and determination to offer the best rental experience."
+      },
+      "hassan": {
+        "name": "Hassan",
+        "description": "Operations Manager of Double-O Car, Hassan ensures the operational management and smooth daily operation of our vehicle fleet."
+      },
+      "khalid": {
+        "name": "Khalid",
+        "description": "Staff Manager of Double-O Car, Khalid coordinates the team and ensures exceptional customer service with every rental."
       }
     },
     "section4": {
