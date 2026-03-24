@@ -208,6 +208,20 @@ class VehicleService {
     }
   }
 
+  async getVehicleBrands(locale: string, filters?: {
+    isAvailable?: boolean
+    startDate?: string
+    endDate?: string
+  }): Promise<string[]> {
+    const vehicles = await this.getVehicles(locale, {
+      isAvailable: filters?.isAvailable,
+      startDate: filters?.startDate,
+      endDate: filters?.endDate,
+    })
+    const unique = Array.from(new Set(vehicles.map((v) => v.brand))).sort()
+    return unique
+  }
+
   async getAdminVehicles(): Promise<Vehicle[]> {
     const response = await fetch('/api/admin/vehicles')
     if (!response.ok) {

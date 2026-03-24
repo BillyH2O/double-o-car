@@ -191,7 +191,14 @@
     "transmission": "Transmission",
     "all": "Toutes",
     "automatic": "Automatique",
-    "manual": "Manuelle"
+    "manual": "Manuelle",
+    "fuel": {
+      "ESSENCE": "Essence",
+      "DIESEL": "Diesel",
+      "ELECTRIC": "Électrique",
+      "HYBRID": "Hybride",
+      "HYBRID_PLUGIN": "Hybride rechargeable"
+    }
   },
   "about": {
     "title": "Qui sommes-nous",

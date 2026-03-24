@@ -59,9 +59,11 @@ export default function VehicleCard({ car, onClick }: VehicleCardProps) {
             <span className="text-[#000000] font-montserrat">{car.fuel}</span>
           </div>
         </div>
-        <div className="bg-[#003CF075] px-4 sm:px-6 py-1.5 sm:py-2 rounded-[20px]">
-          <span className="text-black font-montserrat font-semibold font-weight-600 text-base sm:text-lg">{car.pricePerDay}€</span>
-          <span className="text-black font-montserrat font-regular font-weight-400 text-xs sm:text-sm">{t("perDay")}</span>
+        <div className="flex flex-col items-end bg-[#003CF0] px-4 sm:px-6 py-2 sm:py-2.5 rounded-[20px] shadow-sm">
+          <span className="font-montserrat text-base font-semibold leading-none text-white sm:text-lg">
+            {car.pricePerDay}€
+          </span>
+          <span className="mt-0.5 font-montserrat text-xs leading-tight text-white/90 sm:text-sm">{t("perDay")}</span>
         </div>
       </div>
     </div>

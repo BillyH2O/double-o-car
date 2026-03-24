@@ -191,7 +191,14 @@
     "transmission": "Transmissie",
     "all": "Alle",
     "automatic": "Automatisch",
-    "manual": "Handmatig"
+    "manual": "Handmatig",
+    "fuel": {
+      "ESSENCE": "Benzine",
+      "DIESEL": "Diesel",
+      "ELECTRIC": "Elektrisch",
+      "HYBRID": "Hybride",
+      "HYBRID_PLUGIN": "Plug-in hybride"
+    }
   },
   "about": {
     "title": "Wie wij zijn",

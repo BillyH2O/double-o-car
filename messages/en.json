@@ -191,7 +191,14 @@
     "transmission": "Transmission",
     "all": "All",
     "automatic": "Automatic",
-    "manual": "Manual"
+    "manual": "Manual",
+    "fuel": {
+      "ESSENCE": "Petrol",
+      "DIESEL": "Diesel",
+      "ELECTRIC": "Electric",
+      "HYBRID": "Hybrid",
+      "HYBRID_PLUGIN": "Plug-in hybrid"
+    }
   },
   "about": {
     "title": "Who we are",

@@ -5,6 +5,7 @@ import { useVehicles } from "@/hooks/useVehicles";
 import { useVehicleFilters } from "@/hooks/useVehicleFilters";
 import { useVehicleNavigation } from "@/hooks/useVehicleNavigation";
 import { useVehiclesMapping } from "@/hooks/useVehicleMapping";
+import { useVehicleBrands } from "@/hooks/useVehicleBrands";
 import SearchForm from "@/components/form/SearchForm";
 import VehicleFilters from "@/components/vehicles/VehicleFilters";
 import VehicleList from "@/components/vehicles/VehicleList";
@@ -28,6 +29,13 @@ function VehiculesPageContent() {
     brand: filters.brand || undefined,
     fuelType: filters.fuelType || undefined,
     transmission: filters.transmission || undefined,
+    startDate: urlStartDate,
+    endDate: urlEndDate,
+  });
+
+  // Marques sans filtre de marque/carburant/boîte → liste toujours complète
+  const { brands: allBrands } = useVehicleBrands({
+    isAvailable: true,
     startDate: urlStartDate,
     endDate: urlEndDate,
   });
@@ -69,7 +77,7 @@ function VehiculesPageContent() {
               <VehicleFilters
                 filters={filters}
                 onFiltersChange={setFilters}
-                vehicles={vehicles}
+                allBrands={allBrands}
               />
             </aside>
 
