@@ -210,11 +210,15 @@ class VehicleService {
 
   async getVehicleBrands(locale: string, filters?: {
     isAvailable?: boolean
+    fuelType?: string
+    transmission?: string
     startDate?: string
     endDate?: string
   }): Promise<string[]> {
     const vehicles = await this.getVehicles(locale, {
       isAvailable: filters?.isAvailable,
+      fuelType: filters?.fuelType,
+      transmission: filters?.transmission,
       startDate: filters?.startDate,
       endDate: filters?.endDate,
     })
