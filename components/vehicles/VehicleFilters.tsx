@@ -14,6 +14,11 @@ interface VehicleFiltersProps {
   allBrands: string[]
 }
 
+const selectClassName =
+  "h-10 w-full cursor-pointer rounded-lg border border-white/30 bg-white/20 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+const optionClassName = "bg-white text-slate-900"
+
 export default function VehicleFilters({ filters, onFiltersChange, allBrands }: VehicleFiltersProps) {
   const t = useTranslations("vehicleFilters")
 
@@ -26,13 +31,13 @@ export default function VehicleFilters({ filters, onFiltersChange, allBrands }: 
           <select
             value={filters.brand}
             onChange={(e) => onFiltersChange({ ...filters, brand: e.target.value })}
-            className="h-10 w-full cursor-pointer rounded-lg border border-white/40 bg-white px-4 text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={selectClassName}
           >
-            <option value="" className="bg-white text-slate-900">
+            <option value="" className={optionClassName}>
               {t("all")}
             </option>
             {allBrands.map((brand) => (
-              <option key={brand} value={brand} className="bg-white text-slate-900">
+              <option key={brand} value={brand} className={optionClassName}>
                 {brand}
               </option>
             ))}
@@ -44,13 +49,13 @@ export default function VehicleFilters({ filters, onFiltersChange, allBrands }: 
           <select
             value={filters.fuelType}
             onChange={(e) => onFiltersChange({ ...filters, fuelType: e.target.value })}
-            className="h-10 w-full cursor-pointer rounded-lg border border-white/40 bg-white px-4 text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={selectClassName}
           >
-            <option value="" className="bg-white text-slate-900">
+            <option value="" className={optionClassName}>
               {t("all")}
             </option>
             {FUEL_TYPES.map((fuel) => (
-              <option key={fuel} value={fuel} className="bg-white text-slate-900">
+              <option key={fuel} value={fuel} className={optionClassName}>
                 {t(`fuel.${fuel}`)}
               </option>
             ))}
@@ -62,15 +67,15 @@ export default function VehicleFilters({ filters, onFiltersChange, allBrands }: 
           <select
             value={filters.transmission}
             onChange={(e) => onFiltersChange({ ...filters, transmission: e.target.value })}
-            className="h-10 w-full cursor-pointer rounded-lg border border-white/40 bg-white px-4 text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className={selectClassName}
           >
-            <option value="" className="bg-white text-slate-900">
+            <option value="" className={optionClassName}>
               {t("all")}
             </option>
-            <option value="AUTOMATIC" className="bg-white text-slate-900">
+            <option value="AUTOMATIC" className={optionClassName}>
               {t("automatic")}
             </option>
-            <option value="MANUAL" className="bg-white text-slate-900">
+            <option value="MANUAL" className={optionClassName}>
               {t("manual")}
             </option>
           </select>
