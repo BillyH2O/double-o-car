@@ -35,7 +35,7 @@
   },
   "hero": {
     "title": "Prenez la route, On s'occupe du reste.",
-    "description": "Pensé pour vous rendre votre expérience plus agréable"
+    "description": "Pensé pour rendre votre expérience plus agréable"
   },
   "whyUs": {
     "title": "Pourquoi nous choisir",
@@ -84,7 +84,7 @@
     "items": [
       {
         "question": "Dans quelle ville pouvez-vous me livrer la voiture ?",
-        "answer": "Nous sommes spécialisés dans la livraison de voitures partout à Marrakech."
+        "answer": "Nous sommes spécialisés dans la livraison de voitures jusqu'à 200km de Marrakech."
       },
       {
         "question": "Quels documents sont nécessaires pour louer une voiture ?",

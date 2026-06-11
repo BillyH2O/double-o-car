@@ -24,7 +24,7 @@ export function VehicleDetailSidebar({
   returnLocation,
 }: VehicleDetailSidebarProps) {
   const t = useTranslations("vehicle")
-  const { available: isAvailable, reason: availabilityReason, loading: checkingAvailability, price } = useVehicleAvailability({
+  const { available: isAvailable, loading: checkingAvailability, price } = useVehicleAvailability({
     slug,
     startDate,
     endDate,
@@ -51,7 +51,6 @@ export function VehicleDetailSidebar({
         <AvailabilityStatus
           checkingAvailability={checkingAvailability}
           isAvailable={isAvailable}
-          availabilityReason={availabilityReason}
         />
       )}
 

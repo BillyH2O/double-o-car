@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
       return new Response('Missing required fields', { status: 400 })
     }
 
-    const adminEmail = process.env.ADMIN_EMAIL || 'contact@double-o-car.fr'
+    const adminEmail = process.env.ADMIN_EMAIL || 'doubleocar@gmail.com'
 
     const htmlAdmin = `
       <div style="font-family:system-ui,Arial,sans-serif;font-size:14px;line-height:1.5">
