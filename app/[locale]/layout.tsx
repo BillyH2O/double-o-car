@@ -2,41 +2,40 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales, type Locale } from '@/i18n';
+import { locales, defaultLocale, type Locale } from '@/i18n';
+import { siteUrl, siteName, ogLocaleMap } from '@/lib/site';
 import WhatsAppFloat from '@/components/layout/WhatsAppFloat';
 import "../globals.css";
 
-export const metadata: Metadata = {
-  title: "Double-O Car - Location de voitures",
-  description: "Louez votre voiture en toute simplicité",
-  icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
-  },
-  openGraph: {
-    title: "Double-O Car - Location de voitures",
-    description: "Louez votre voiture en toute simplicité",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Double-O Car Logo",
-      },
-    ],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Double-O Car - Location de voitures",
-    description: "Louez votre voiture en toute simplicité",
-    images: ["/logo.png"],
-  },
-};
-
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  const languages: Record<string, string> = {};
+  for (const l of locales) {
+    languages[l] = `${siteUrl}/${l}`;
+  }
+  languages['x-default'] = `${siteUrl}/${defaultLocale}`;
+
+  return {
+    alternates: {
+      canonical: `${siteUrl}/${locale}`,
+      languages,
+    },
+    openGraph: {
+      siteName,
+      url: `${siteUrl}/${locale}`,
+      locale: ogLocaleMap[locale as Locale] ?? ogLocaleMap[defaultLocale],
+      type: "website",
+    },
+  };
 }
 
 export default async function LocaleLayout({
