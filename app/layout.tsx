@@ -27,9 +27,12 @@ export const metadata: Metadata = {
     "louer une voiture Maroc",
   ],
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/32.png", sizes: "32x32", type: "image/png" },
+      { url: "/48.png", sizes: "48x48", type: "image/png" },
+    ],
+    shortcut: "/48.png",
+    apple: [{ url: "/180.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     siteName,
