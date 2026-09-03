@@ -1,13 +1,38 @@
 import type { Locale } from '@/i18n'
 import { COMPANY } from './company'
 
-type Block = { title: string; paragraphs: string[]; list?: string[] }
+type Block = {
+  readonly title: string
+  readonly paragraphs: readonly string[]
+  readonly list?: readonly string[]
+}
 
 export type LegalDoc = {
-  label: string
-  title: string
-  subtitle: string
-  sections: Block[]
+  readonly label: string
+  readonly title: string
+  readonly subtitle: string
+  readonly sections: readonly Block[]
+}
+
+export type BannerCopy = {
+  readonly title: string
+  readonly body: string
+  readonly more: string
+  readonly accept: string
+  readonly refuse: string
+  readonly customize: string
+  readonly save: string
+  readonly hide: string
+  readonly analytics: string
+  readonly analyticsHelp: string
+}
+
+export type LegalCopy = {
+  readonly mentions: LegalDoc
+  readonly privacy: LegalDoc
+  readonly cookies: LegalDoc
+  readonly cgl: LegalDoc
+  readonly banner: BannerCopy
 }
 
 const fr = {
@@ -200,6 +225,8 @@ const fr = {
     ],
   },
   banner: {
+    title: 'Cookies',
+    body: 'Nous utilisons des cookies nécessaires au fonctionnement du site. Aucun cookie publicitaire n’est déposé à ce jour. Vous pouvez refuser les cookies optionnels aussi facilement que vous pouvez les accepter.',
     more: 'En savoir plus',
     accept: 'Tout accepter',
     refuse: 'Tout refuser',
@@ -209,9 +236,9 @@ const fr = {
     analytics: 'Mesure d’audience (optionnel)',
     analyticsHelp: 'Inactif : aucun traceur analytique n’est chargé actuellement.',
   },
-} as const
+} satisfies LegalCopy
 
-const en: typeof fr = {
+const en = {
   mentions: {
     label: 'Information',
     title: 'LEGAL NOTICE',
@@ -404,9 +431,9 @@ const en: typeof fr = {
     analytics: 'Audience measurement (optional)',
     analyticsHelp: 'Inactive: no analytics tracker is loaded at the moment.',
   },
-}
+} satisfies LegalCopy
 
-const nl: typeof fr = {
+const nl = {
   mentions: {
     label: 'Informatie',
     title: 'WETTELIJKE VERMELDINGEN',
@@ -599,11 +626,11 @@ const nl: typeof fr = {
     analytics: 'Audiencemeting (optioneel)',
     analyticsHelp: 'Inactief: er wordt momenteel geen analytische tracker geladen.',
   },
-}
+} satisfies LegalCopy
 
-const byLocale: Record<Locale, typeof fr> = { fr, en, nl }
+const byLocale: Record<Locale, LegalCopy> = { fr, en, nl }
 
-export function getLegalCopy(locale: string): typeof fr {
+export function getLegalCopy(locale: string): LegalCopy {
   if (locale === 'en' || locale === 'nl' || locale === 'fr') return byLocale[locale]
   return fr
 }
