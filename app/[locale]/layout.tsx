@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { locales, defaultLocale, type Locale } from '@/i18n';
 import { siteUrl, siteName, ogLocaleMap } from '@/lib/site';
 import WhatsAppFloat from '@/components/layout/WhatsAppFloat';
+import { CookieBanner } from '@/components/legal/CookieBanner';
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -58,6 +59,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider messages={messages}>
       {children}
+      <CookieBanner />
       <WhatsAppFloat />
     </NextIntlClientProvider>
   );

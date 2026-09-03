@@ -1,8 +1,13 @@
 "use client"
 
+import { COMPANY } from '@/lib/legal/company'
+
 export default function WhatsAppFloat() {
   // Récupérer le numéro WhatsApp depuis les variables d'environnement
-  const whatsappPhone = process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER || process.env.WHATSAPP_PHONE_NUMBER
+  const whatsappPhone =
+    process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER ||
+    process.env.WHATSAPP_PHONE_NUMBER ||
+    COMPANY.phoneTel
 
   // Si aucun numéro n'est configuré, ne pas afficher le bouton
   if (!whatsappPhone) {
@@ -20,7 +25,7 @@ export default function WhatsAppFloat() {
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#20BA5A] transition-all duration-300 hover:scale-110 hover:shadow-xl"
+      className="whatsapp-float fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:bg-[#20BA5A] transition-all duration-300 hover:scale-110 hover:shadow-xl"
       aria-label="Contacter sur WhatsApp"
     >
       <svg

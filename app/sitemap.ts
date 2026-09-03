@@ -12,6 +12,8 @@ const staticPaths = [
   '/a-propos',
   '/mentions-legales',
   '/politique-de-confidentialite',
+  '/politique-cookies',
+  '/conditions-generales-de-location',
 ] as const
 
 function alternatesFor(path: string) {

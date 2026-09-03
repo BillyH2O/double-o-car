@@ -225,7 +225,9 @@
   },
   "checkout": {
     "redirecting": "Doorverwijzen...",
-    "checkoutButton": "Dit voertuig boeken"
+    "checkoutButton": "Dit voertuig boeken",
+    "acceptCgl": "Ik aanvaard de",
+    "cglLink": "algemene huurvoorwaarden"
   },
   "privacy": {
     "label": "Informatie",
@@ -298,7 +300,7 @@
     "subtitle": "Juridische informatie betreffende Double-O Car",
     "section1": {
       "title": "1. Uitgever van de site",
-      "intro": "De website double-o-car.fr wordt uitgegeven door:",
+      "intro": "De website doubleocar.com wordt uitgegeven door:",
       "companyName": "Bedrijfsnaam:",
       "email": "E-mail:",
       "website": "Website:"
@@ -309,7 +311,7 @@
     },
     "section3": {
       "title": "3. Hosting",
-      "text": "De site wordt gehost door een webhostingprovider. Voor informatie over hosting, neem contact met ons op."
+      "text": "Host: Vercel Inc. Adres: 440 N Barranca Ave #4133, Covina, CA 91723, Verenigde Staten. Website: https://vercel.com"
     },
     "section4": {
       "title": "4. Intellectueel eigendom",
@@ -411,6 +413,7 @@
     "links": "Snelle links",
     "legal": "Juridische kennisgeving",
     "privacy": "Privacybeleid",
+    "cookies": "Cookies",
     "about": "Over ons",
     "contact": "Neem contact met ons op",
     "vehicles": "Voertuigen",

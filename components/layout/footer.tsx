@@ -53,6 +53,8 @@ function FooterWithTranslations() {
     contact: t("contact"),
     legal: t("legal"),
     privacy: t("privacy"),
+    cookies: t("cookies"),
+    rentalConditions: t("rentalConditions"),
     developedBy: t("developedBy"),
     studio: t("studio"),
   }} />;
@@ -80,6 +82,8 @@ function FooterWithStaticTranslations() {
     contact: getString(footerTranslations, 'contact'),
     legal: getString(footerTranslations, 'legal'),
     privacy: getString(footerTranslations, 'privacy'),
+    cookies: getString(footerTranslations, 'cookies'),
+    rentalConditions: getString(footerTranslations, 'rentalConditions'),
     developedBy: getString(footerTranslations, 'developedBy'),
     studio: getString(footerTranslations, 'studio'),
   }} />;
@@ -97,6 +101,8 @@ function FooterContent({
     contact: string;
     legal: string;
     privacy: string;
+    cookies: string;
+    rentalConditions: string;
     developedBy: string;
     studio: string;
   };
@@ -125,6 +131,12 @@ function FooterContent({
           </Link>
           <Link href={`/${locale}/politique-de-confidentialite`} className="hover:text-white transition-colors">
             {t.privacy}
+          </Link>
+          <Link href={`/${locale}/conditions-generales-de-location`} className="hover:text-white transition-colors">
+            {t.rentalConditions}
+          </Link>
+          <Link href={`/${locale}/politique-cookies`} className="hover:text-white transition-colors">
+            {t.cookies}
           </Link>
         </nav>
         <div className="text-center text-[#D9D9D980] text-xs sm:text-sm mt-6 sm:mt-8">
@@ -156,6 +168,8 @@ export default function Footer({ useStaticTranslations }: { useStaticTranslation
       contact: getString(footerTranslations, 'contact'),
       legal: getString(footerTranslations, 'legal'),
       privacy: getString(footerTranslations, 'privacy'),
+      cookies: getString(footerTranslations, 'cookies'),
+      rentalConditions: getString(footerTranslations, 'rentalConditions'),
       developedBy: getString(footerTranslations, 'developedBy'),
       studio: getString(footerTranslations, 'studio'),
     }} />;
@@ -170,6 +184,8 @@ export default function Footer({ useStaticTranslations }: { useStaticTranslation
       contact: getString(footerTranslations, 'contact'),
       legal: getString(footerTranslations, 'legal'),
       privacy: getString(footerTranslations, 'privacy'),
+      cookies: getString(footerTranslations, 'cookies'),
+      rentalConditions: getString(footerTranslations, 'rentalConditions'),
       developedBy: getString(footerTranslations, 'developedBy'),
       studio: getString(footerTranslations, 'studio'),
     }} />;

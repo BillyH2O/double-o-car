@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { stripe, isStripeConfigured } from '@/lib/stripe'
+import { COMPANY } from '@/lib/legal/company'
 
 function getBaseUrl() {
   // En production, utiliser l'URL du site déployé
@@ -84,11 +85,10 @@ export async function POST(req: NextRequest) {
 
     // Si Stripe n'est pas configuré, rediriger vers WhatsApp
     if (!isStripeConfigured() || !stripe) {
-      const whatsappPhone = process.env.WHATSAPP_PHONE_NUMBER || process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER
-      
-      if (!whatsappPhone) {
-        return new Response('WhatsApp phone number not configured. Please set WHATSAPP_PHONE_NUMBER or NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER environment variable.', { status: 500 })
-      }
+      const whatsappPhone =
+        process.env.WHATSAPP_PHONE_NUMBER ||
+        process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER ||
+        COMPANY.phoneTel
 
       // Créer le message WhatsApp avec les détails de la réservation
       // Utilisation de caractères ASCII uniquement pour éviter les problèmes d'encodage

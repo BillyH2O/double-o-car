@@ -225,7 +225,9 @@
   },
   "checkout": {
     "redirecting": "Redirecting...",
-    "checkoutButton": "Book this vehicle"
+    "checkoutButton": "Book this vehicle",
+    "acceptCgl": "I accept the",
+    "cglLink": "rental terms and conditions"
   },
   "privacy": {
     "label": "Information",
@@ -298,7 +300,7 @@
     "subtitle": "Legal information regarding Double-O Car",
     "section1": {
       "title": "1. Site publisher",
-      "intro": "The double-o-car.fr website is published by:",
+      "intro": "The doubleocar.com website is published by:",
       "companyName": "Company name:",
       "email": "Email:",
       "website": "Website:"
@@ -309,7 +311,7 @@
     },
     "section3": {
       "title": "3. Hosting",
-      "text": "The site is hosted by a web hosting provider. For any information regarding hosting, please contact us."
+      "text": "Host: Vercel Inc. Address: 440 N Barranca Ave #4133, Covina, CA 91723, United States. Website: https://vercel.com"
     },
     "section4": {
       "title": "4. Intellectual property",
@@ -411,6 +413,7 @@
     "links": "Quick links",
     "legal": "Legal notice",
     "privacy": "Privacy policy",
+    "cookies": "Cookies",
     "about": "About",
     "contact": "Contact us",
     "vehicles": "Vehicles",
